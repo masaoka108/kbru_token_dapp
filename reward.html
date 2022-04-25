@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="​​KBRUトークンは換金目的ではない、コミュニティ界隈で使えるトークンですが、ユーティリティを高めて日常的にためたり、ウォレットに送付しあったりできます。, Benefits of Video Games&nbsp;&nbsp;For Kids &amp;amp; Adults, Video games, Brain stimulation, Stress relief, Top PC Games, Top PC Games, Gadgets for your game, Looking for games to download for free?, VR-Technologies, contact form, follow us, INTUITIVE">
+    <meta name="description" content="">
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>Token Reward</title>
+
+    <!-- デフォルト -->
+    <link rel="stylesheet" href="./assets/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="./assets/css/Home.css" media="screen">
+    <script type="text/javascript" src="./assets/js/jquery.js"></script>
+    <script type="text/javascript" src="./assets/js/nicepage.js"></script>
+    <script type="text/javascript" src="./assets/js/common.js"></script>
+
+    <meta name="generator" content="Nicepage 4.8.2, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i">
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous" async></script>
+
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+    
+
+    <script src="./assets/js/firebase.js"></script>
+
+    <!-- <script type="module" src="./assets/js/firebase.js"></script> -->
+    <!-- <script type="text/babel" src="./assets/js/firebase.js"></script> -->
+    
+    <!-- <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>     -->
+
+    <!-- <script type="module">
+      import { initializeApp } from 'firebase/app';
+      console.log("asdf");
+    </script> -->
+    
+    
+    <!-- Web3 -->
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+    <script class="u-script" type="text/javascript" src="./assets/js/abi.js" defer=""></script>    
+    <script class="u-script" type="text/javascript" src="./assets/js/kbru.js" async="async"></script>    
+    
+    
+    
+    <script type="application/ld+json">{
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "name": ""
+    }</script>
+    
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Home">
+    <meta property="og:type" content="website">
+  </head>
+  <body data-home-page="Home.html" data-home-page-title="Home" class="u-body u-xl-mode"><header class="u-clearfix u-header u-header" id="sec-0a63"><div class="u-clearfix u-sheet u-sheet-1">
+    <a style="text-decoration: none;color:black" href="./index.html">
+      <h1 class="u-align-left u-text u-text-default u-text-1">KBRU Token</h1>
+    </a>
+        <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+          <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
+            <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+              <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+              <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
+</g></svg>
+            </a>
+          </div>
+          <div class="u-nav-container">
+
+            <ul class="u-nav u-unstyled u-nav-1">
+
+              <li class="u-nav-item">
+                <img id="profileImg" src="" style="width: 40px;">
+              </li>
+
+              <li class="u-nav-item">
+                <span id="user_address"></span>
+              </li>
+         
+              <li class="u-nav-item">
+                <span id="username"></span>
+              </li>
+
+            </ul>
+          </div>
+          <div class="u-nav-container-collapse">
+            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+              <div class="u-inner-container-layout u-sidenav-overflow">
+                <div class="u-menu-close"></div>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Home.html">Home</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="About.html">About</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Contact.html">Contact</a>
+</li></ul>
+              </div>
+            </div>
+            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+          </div>
+        </nav>
+      </div></header>
+ 
+
+      <section class="u-align-center u-clearfix u-shading " id="carousel_745d">
+        <div class="u-list u-list-1">
+          <!-- <div class="u-repeater u-repeater-1"> -->
+  
+              <h1 style="color:black" class="u-custom-font u-font-montserrat u-text u-title u-text-1">
+                <span style="font-size: 2.25rem;"></span><b>
+                  <span style="font-size: 2.25rem;">KBRUトークンを使いましょう
+                  </span>
+                  <br></b>
+              </h1>
+            
+            <div style="display: flex;justify-content: center;">
+              <div id="rewardList" style=" display:flex; justify-content: flex-start;flex-wrap: wrap; color:black; width:80%">
+              <div>
+            <div>
+        </div>
+      </section>
+  
+
+
+
+
+
+
+    <footer style="margin-top:100px;" class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-c7ba"><div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-small-text u-text u-text-variant u-text-1">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+      </div></footer>
+    <section class="u-backlink u-clearfix u-grey-80">
+      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
+        <span>Website Templates</span>
+      </a>
+      <p class="u-text">
+        <span>created with</span>
+      </p>
+      <a class="u-link" href="" target="_blank">
+        <span>Website Builder Software</span>
+      </a>. 
+    </section>
+
+
+
+
+    <div id="modalRewardMsg" class="modal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">KBRUトークンの使い方</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          
+          <div class="modal-body">
+            
+            <span id="spanMsg"></span>  
+            <p>1.<a href="tokenSend.html" target="_blank">コチラ</a>の画面からKBRUを「0xf841....」へ送信します</p>
+            <p>2.ヒオキンさんにDiscordのDMで購入した特典名と自身のウォレットアドレスを伝えて下さい</p>
+            <p>3.確認後、特典の実施を行います🎉</p>
+            
+          </div>
+          <!-- <div id="userCreateFooter" class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+            <button id="userCreate" type="button" class="btn btn-primary">登録</button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var flg = 0;
+      $(function() {
+
+        setRewardList()
+
+        async function setRewardList() {
+
+          var tempCollection = [];
+
+          const db = firebase.firestore();
+          await db.collection("rewards")
+          //.where("capital", "==", true)
+          .get()
+          .then((querySnapshot) => {
+
+              querySnapshot.forEach((doc) => {
+                  // doc.data() is never undefined for query doc snapshots
+                  console.log(doc.id, " => ", doc.data());
+
+                  tempCollection.push(doc.data());
+              });
+          })
+          .catch((error) => {
+              console.log("Error getting documents: ", error);
+          });
+
+          for (collection of tempCollection) {
+            var storageRef = firebase.storage().ref();
+            const gsReference = storageRef.child(collection.image_path);
+            await setList2(gsReference, collection)
+          }
+
+
+        }
+
+
+
+
+          async function setList2(gsReference, docData) {
+
+            await gsReference.getDownloadURL().then((downloadURL) => {
+                    $('#rewardList').append(`
+                      <div style="margin:5px 20px">
+                      <img src="${downloadURL}" style="width:200px">
+                      <div>
+                        ${docData.price}KBRU<br>
+                        ${docData.name}<br>
+                        <button type="button" class="btn-reward btn btn-warning btn-lg u-active-white u-border-2 u-border-white u-btn u-btn-round u-button-style u-hover-white u-palette-1-base u-radius-50 u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-1">
+                          この特典にKBRUを使う
+                        </button>
+                      </div>
+                    </div>                  
+                  `)
+              })
+
+          }
+
+
+        $(document).on('click', '.btn-reward', async function() {
+
+          var modalRewardMsg = new bootstrap.Modal(document.getElementById('modalRewardMsg'), {
+            keyboard: false
+          })
+
+          modalRewardMsg.show();
+
+        });
+          
+
+
+        $('#userCreate').on('click', async function() {
+          console.dir(app);
+
+          // 画像をFirebase Storageに登録
+          const file = document.getElementById("profileImage").files[0];
+          profileImagePath = await putStorage(file) // この中でFirebase usersへの登録も行なっている
+
+        });
+
+      });
+
+    </script>
+
+
+  </body>
+</html>
