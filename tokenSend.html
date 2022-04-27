@@ -128,7 +128,7 @@
                 </div>
               </div>
 
-              <button id="sendToken" type="button" class="btn btn-primary" style="width:300px; margin-top:30px">送信</button><br>
+              <button id="sendToken" type="button" class="btn btn-primary rounded-pill" style="width:250px; margin-top:30px">送信</button><br>
               <div style="margin-top:10px;font-size:small"><a href="tokenHistory.html">KBRUトークンの送受信履歴を見る</a></div>
 
             </div>
@@ -165,7 +165,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">KBRU送信中</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
           </div>
           <div class="modal-body">
       
@@ -180,7 +180,7 @@
           </div>
           <div id="divButton" class="modal-footer" style="display: flex; justify-content: center;text-align: center; display:none">
             <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button> -->
-            <a href="./tokenSend.html"  style="width:200px" class="btn btn-primary">OK</a>
+            <a href="./tokenSend.html"  style="width:200px" class="btn btn-primary rounded-pill">OK</a>
           </div>
         </div>
       </div>
@@ -188,13 +188,11 @@
 
 
     <script>
-      // openMsgModal()
-      // console.log(getNow())
-
 
       async function openMsgModal() {
         var myModal = new bootstrap.Modal(document.getElementById('msgModal'), {
-          keyboard: false
+          keyboard: false,
+          backdrop: "static"
         })
 
         myModal.show();
@@ -202,18 +200,20 @@
 
       async function hideMsgModal() {
         var myModal = new bootstrap.Modal(document.getElementById('msgModal'), {
-          keyboard: false
+          keyboard: false,
+          backdrop: "static"
         })
 
         myModal.hide();
       }
 
-      function setModalEnd() {
-        
+      function changeModalMsg(msg) {        
+          $("#divMsg").html(msg)
+      }      
+      function setModalEnd() {        
           $("#divLoader").hide()
           $("#divMsg").text("KBRUの送信が完了しました🎉")
-          $("#divButton").show()
-        
+          $("#divButton").show()        
       }      
       
 

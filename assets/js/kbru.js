@@ -11,7 +11,7 @@ $(document).ready(async () => {
     web3 = new Web3(Web3.givenProvider);
 
     var version = web3.version.api;
-    console.log(version);
+    // console.log(version);
 
     // priceData = await getPrice();
     // console.dir(priceData)
@@ -26,12 +26,29 @@ $(document).ready(async () => {
       }
     }
 
+    showHideConnectButton(localStorage?.getItem('isWalletConnected'))
+
     // // テスト
 
   }
 })
 
+function showHideConnectButton(connect) {
+  if (connect == 'true') {
+    // コネクト時
+    $('#user_address').show()
+    $('#connect_wallet_nav').hide()  
+  } else {
+    // 未コネクト時
+    $('#user_address').hide()
+    $('#connect_wallet_nav').show()  
+  }
 
+}
+
+$("#user_address").click(() => {
+  openModal();
+});
 
 $(".btn.login").click(async () => {
   await  connectWallet();
@@ -43,7 +60,15 @@ $("#sendToken").click(async () => {
 
   openMsgModal()
 
-  amount = ($("#amount").val() * 10**18).toString()
+  // const decimals = 18;
+  // const input = $("#amount").val().toString();
+  // // amount = BigNumber.from(input).mul(BigNumber.from(10).pow(decimals));
+  // const amount = web3.utils.parseUnits(input, decimals)
+
+  // amount = ($("#amount").val() * 10**18).toString()
+
+  amount = $("#amount").val()
+
 
   await transferToken($("#to").val(), amount)
 
@@ -65,28 +90,37 @@ async function connectWallet() {
     })
 
     user = accounts[0] //アドレスを取得
-
     tokenInst = new web3.eth.Contract(abi.kbru, kbruAddr, { from:user }); // kbru をインスタンス化
+    userInfo = await getUserInfo(user)  // Firebase ユーザー情報取得
 
     $(".btn.login").html("Connected") // ボタンを「Connected」に変える
-    $("#user_address").html(user) // ウォレットアドレスを表示
+    $("#user_address").html(shortAddress(user)) // ウォレットアドレスを表示
     $("#userMenu").fadeIn(1000);  // ユーザーメニューを表示
-    userInfo = await getUserInfo(user)  // ユーザー情報取得
-    await setNickname(userInfo.nickname)  // ニックネームを表示
-    firebaseUserId = userInfo.docId       // Doc ID
 
     // もし新規だったユーザーだった場合は登録フォームを表示する
-    if (typeof userInfo.nickname === "undefined" || userInfo.nickname == "") {
+    if (typeof userInfo.nickname === "undefined") {
+      // 完全に新規の場合
+
+      // ウォレットアドレスだけでFirebaseに登録
+      userInfo = {"walletAddress": user, "nickname": "", "profilePhoto": ""}
+      await createUser(userInfo, false)
+
+      openModal();
+    } else if(userInfo.nickname == "" || userInfo.profilePhoto == "") {
+      // ウォレット接続は完了しているがユーザー情報の登録が終わっていない場合
       openModal();
     } else {
-      setProfileImg(userInfo.profilePhoto)  
-
-      // 現在の所有KBRUを取得
-      currentBalance = getCurrentBalance(user);
+      await setNickname(userInfo.nickname)  // ニックネームを表示 
+      firebaseUserId = userInfo.docId       // Doc ID
     }
 
+    setProfileImg(userInfo.profilePhoto, "profileImg") // プロフィール画像 表示
     localStorage.setItem("isWalletConnected", true);
+    showHideConnectButton(localStorage?.getItem('isWalletConnected'))
 
+
+    currentBalance = await getCurrentBalance(user); // 現在の所有KBRUを取得
+    $("#currentBalance").html(`${currentBalance.toLocaleString()} KBRU`)
 
     tokenInst.events.Transfer({ filter: {to: user} }, (err, event) => {
       console.log('あなたにKBRUが届きました')
@@ -97,13 +131,28 @@ async function connectWallet() {
     tokenInst.events.Transfer({ filter: {from: user} }, async (err, event) => {
 
       // (async () => {
+
         console.log('あなたがKBRUを送信しました')
+
+        // メッセージを変化させる
+        changeModalMsg('ブロックチェーンへの書き込みが完了しました。<br>システムデータを更新中です。<br>引き続きこのままでお待ち下さい🙏')
 
         // Firebaseに履歴を保存
         createTokenHistory(event.returnValues.from, event.returnValues.to, event.returnValues.value)
 
         // 自分の currentBalance, totalSendAmount を更新
         await updateCurrentBalanceTotalSendAmount(event.returnValues.from)
+
+        // 送信先ユーザーがFirebaseにいるか確認、いなければ登録する
+        toUserInfo = await getUserInfo(event.returnValues.to.toLowerCase())
+        if(toUserInfo.walletAddress == undefined) {
+          userData = {
+            "walletAddress" : event.returnValues.to.toLowerCase(),
+            "nickname": "",
+            "profilePhoto": "",
+          }
+          await createUser(userData , false, false)
+        }
 
         // 送信先ユーザーの currentBalance, totalSendAmount を更新
         await updateCurrentBalanceTotalSendAmount(event.returnValues.to)
@@ -113,7 +162,8 @@ async function connectWallet() {
 
         console.log(`event called: ${event.event}`);
         console.log(JSON.stringify(event, null, "    "));
-      // })();
+
+        // })();
 
     });
 
@@ -279,13 +329,29 @@ async function getTokenSendHistory(contractAddr, tokenAbi,fromAddress, fromBlock
 
 async function transferToken(to, amount) {
 
-  const receipt = await tokenInst.methods.transfer(to, amount)
+  // web3.eth.getGasPrice()
+  // .then(
+  //   console.log
+  // );
+
+  let method = tokenInst.methods.transfer(to, web3.utils.toWei(amount));
+  let gas = await method.estimateGas({from: user});
+  console.log('estimateGas=' + gas);
+
+  let gasPrice = await web3.eth.getGasPrice();
+  console.log('gasPrice=' + gasPrice);
+  
+  
+
+  const receipt = await tokenInst.methods.transfer(to, web3.utils.toWei(amount))
   .send(
     {
       from: user,
-      gas: 1500000,
-      gasPrice: '4000000'
-                 
+      gas: gas + 50000,
+      gasPrice: gasPrice,
+      // gas: 1500000,
+      // // gasPrice: '4000000'
+      // gasPrice: '80000000'
     }
   )
   .on('receipt', function(){
@@ -295,25 +361,35 @@ async function transferToken(to, amount) {
 }
 
 function openModal() {
-
-  // if (localStorage?.getItem('isWalletConnected') !== 'true') {
+    $('#mode').val('')
 
     var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
       keyboard: false
     })
 
+    if (userInfo.nickname !== undefined) {
+      $('#nickname').val(userInfo.nickname)
+      setProfileImg(userInfo.profilePhoto, "profileImgForm")  
+      $('#mode').val('edit')      
+    }
+
     myModal.show();
 }
 
-function setProfileImg(profilePath) {
+function setProfileImg(profilePath, target = "profileImg") {
 
-  var storageRef = firebase.storage().ref();
-  const gsReference = storageRef.child(profilePath);
-
-  gsReference.getDownloadURL().then((downloadURL) => {
-    document.getElementById("profileImg").src = downloadURL;
-    console.log(downloadURL)
-  });
+  if(profilePath !== undefined && profilePath != "") {
+    var storageRef = firebase.storage().ref();
+    const gsReference = storageRef.child(profilePath);
+  
+    gsReference.getDownloadURL().then((downloadURL) => {
+      document.getElementById(target).src = downloadURL;
+      console.log(downloadURL)
+    });
+  } else {
+    document.getElementById(target).src = "./assets/images/default_profile_img.jpg";
+  }
+  
 
 }
 
@@ -331,11 +407,17 @@ async function getCurrentBalance(address) {
   var currentFile = window.location.href.split('/').pop();
   if(currentFile == 'index.html') {
     // users の currentBalanceを更新      
-    updateUser(userInfo.docId, {currentBalance: balance})
-    currentBalance
+    updateUser(address, {currentBalance: balance})
+    // currentBalance
   }
 
-  return balance
+  // return balance
+
+
+  return new Promise(async (resolve, reject) => {
+    resolve(balance)
+  })  
+
 }
 
 

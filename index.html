@@ -60,79 +60,119 @@
     <meta property="og:title" content="Home">
     <meta property="og:type" content="website">
   </head>
-  <body data-home-page="Home.html" data-home-page-title="Home" class="u-body u-xl-mode"><header class="u-clearfix u-header u-header" id="sec-0a63"><div class="u-clearfix u-sheet u-sheet-1">
-    <a style="text-decoration: none;color:black" href="./index.html">
-      <h1 class="u-align-left u-text u-text-default u-text-1">KBRU Token</h1>
-    </a>
-        <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+  <body data-home-page="Home.html" data-home-page-title="Home" class="u-body u-xl-mode">
+    <header class="u-clearfix u-header u-header" id="sec-0a63">
+      <!-- <div class="u-clearfix u-sheet u-sheet-1"> -->
+      
+      <div style="display:flex;align-items: center;">
+        
+        <a style="text-decoration: none;color:black; margin-left: 20px;" href="./index.html">
+          <h1 class="u-align-left u-text u-text-default u-text-1">KBRU Token</h1>
+        </a>
+        <!-- <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1"> -->
+        <nav style="margin-left: auto;margin-right: 20px;">
+            
           <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
             <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
               <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
               <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
-</g></svg>
+  </g></svg>
             </a>
           </div>
           <div class="u-nav-container">
 
             <ul class="u-nav u-unstyled u-nav-1">
+              <li class="u-nav-item">
+                <span id="currentBalance"></span>
+              </li>
 
               <li class="u-nav-item">
                 <img id="profileImg" src="" style="width: 40px;">
               </li>
 
               <li class="u-nav-item">
-                <span id="user_address"></span>
+                <button id="connect_wallet_nav" type="button" class="btn btn-warning btn-lg login u-active-white u-border-2 u-border-white u-btn u-btn-round u-button-style u-hover-white u-palette-1-base u-radius-50 u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-1">
+                  Connect wallet
+                </button>
+
+                <button id="user_address" type="button" class="btn btn-warning btn-lg login u-active-white u-border-2 u-border-white u-btn u-btn-round u-button-style u-hover-white u-palette-1-base u-radius-50 u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-1">
+                  
+                </button>
+
               </li>
 
               
               <li class="u-nav-item">
                 <span id="username"></span>
               </li>
-<!-- 
-              <li class="u-nav-item">
-                <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Home.html" style="padding: 10px 20px;">
-                  Home
-                </a>
-              </li>
-              
-              <li class="u-nav-item">
-                <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="About.html" style="padding: 10px 20px;">
-                  About
-                </a>
-              </li>
-              
-              <li class="u-nav-item">
-                <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Contact.html" style="padding: 10px 20px;">
-                  Contact
-                </a>
-              </li>
- -->
 
             </ul>
           </div>
+<!-- 
           <div class="u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
                 <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Home.html">Home</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="About.html">About</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Contact.html">Contact</a>
-</li></ul>
+  </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="About.html">About</a>
+  </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Contact.html">Contact</a>
+  </li></ul>
               </div>
             </div>
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
+ -->
         </nav>
-      </div></header>
-    <section class="u-align-center u-clearfix u-image u-shading u-section-1" id="carousel_4c9c" src="" data-image-width="1800" data-image-height="820">
+      </div>
+  </header>
+    <!-- <section class="u-align-center u-clearfix u-image u-shading u-section-1" id="carousel_4c9c" src="" data-image-width="1800" data-image-height="820" > -->
+      
+      <div style="background-image: url('./assets/images/kbru_bg_img.png'); background-size: 100%;display: flex; flex-direction: column; align-items: center; background-repeat: no-repeat;">
+        
+        <img src="./assets/images/kbru_logo.png" style="margin-top: 350px;" >
+
+        <div style="font-size: 1.5rem; width: 700px; margin-top:30px">
+          カブールトークンは、被りものの民が使うトークンで
+          誕生日やお中元に送り合ったり、貯めると割と本気で
+          役に立つこともあるものです。換金はできません。
+        </div>
+
+        <div>
+          <button type="button" style="font-size: 40px; font-weight: 700; padding: 5px 50px;" class="btn btn-warning btn-lg login u-active-white u-border-2 u-border-white u-btn u-btn-round u-button-style u-hover-white u-palette-1-base u-radius-50 u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-1">
+            Connect wallet
+          </button>
+        </div>
+
+        <div style="font-size:xx-large; font-weight:700">
+          <span id="balance"></span>
+        </div>
+
+        <div id="userMenu" style="display:none">
+          <!-- <a style="font-size: 30px; font-weight: 700; padding: 5px 50px;" href="./tokenSend.html" class="btn btn-warning btn-lg u-active-white u-border-2 u-border-white u-btn u-btn-round u-button-style u-hover-white u-palette-1-base u-radius-50 u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-1"> -->
+          <a style="font-size: 30px; font-weight: 700; padding: 5px 50px;" href="./tokenSend.html" class="btn btn-warning btn-lg u-border-2 u-border-white u-btn u-btn-round u-button-style u-palette-1-base u-radius-50 u-text-body-alt-color u-btn-1">
+            トークンを送る
+          </a>
+
+          <a style="font-size: 30px; font-weight: 700; padding: 5px 50px;" href="./reward.html" class="btn btn-warning btn-lg u-active-white u-border-2 u-border-white u-btn u-btn-round u-button-style u-palette-1-base u-radius-50 u-text-active-black u-text-body-alt-color u-btn-1">
+            トークンを使う
+          </a>
+
+
+        </div>
+
+      </div>
+
+<!-- 
+      <section class="u-align-center u-clearfix u-image u-shading u-section-1" id="carousel_4c9c" src="" style="background-size: auto auto;" >
+        
       <div class="u-clearfix u-sheet u-valign-middle-sm u-valign-middle-xs u-sheet-1">
+        <img src="./assets/images/kbru_logo.png" >
         <h1 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-title u-text-1">
           <span style="font-size: 2.25rem;"></span><b>
             <span style="font-size: 2.25rem;">KBRUトークンは換金目的ではない、<br>コミュ​ニティ界隈で使えるトークンですが、<br>ユーティリティを高めて日常的にためたり、<br>ウォレットに送付しあったりできます。
             </span>
             <br></b>
         </h1>
-        <!-- <a href="https://nicepage.com/website-builder" class="u-active-white u-border-2 u-border-white u-btn u-btn-round u-button-style u-hover-white u-palette-1-base u-radius-50 u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-1">Connect wallet</a> -->
         
         <button type="button" class="btn btn-warning btn-lg login u-active-white u-border-2 u-border-white u-btn u-btn-round u-button-style u-hover-white u-palette-1-base u-radius-50 u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-1">
             Connect wallet
@@ -156,11 +196,16 @@
 
       </div>
     </section>
+ -->
+
+
     <section class="u-clearfix u-palette-4-dark-3 u-section-2" id="carousel_745d">
       <img class="u-expanded-height-lg u-expanded-height-md u-expanded-height-xl u-expanded-width-xs u-image u-image-1" src="./assets/images/2022-04-1815.24.55.png" data-image-width="2356" data-image-height="1538">
       <div class="u-list u-list-1">
-        <div class="u-repeater u-repeater-1">
-          <div class="u-container-style u-list-item u-repeater-item u-white u-list-item-1">
+        <div id="rankingList" class="u-repeater u-repeater-1">
+
+
+          <!-- <div class="u-container-style u-list-item u-repeater-item u-white u-list-item-1">
             <div class="u-container-layout u-similar-container u-container-layout-1">
               <h2 class="u-text u-text-1">1位&nbsp; 3,000,000 KBRU</h2>
               <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
@@ -183,6 +228,8 @@
               </div>
             </div>
           </div>
+
+
           <div class="u-container-style u-list-item u-repeater-item u-white u-list-item-2">
             <div class="u-container-layout u-similar-container u-container-layout-4">
               <h2 class="u-text u-text-3">2位&nbsp; 2,500,000 KBRU</h2>
@@ -207,6 +254,9 @@
               </div>
             </div>
           </div>
+
+
+
           <div class="u-container-style u-list-item u-repeater-item u-white u-list-item-3">
             <div class="u-container-layout u-similar-container u-container-layout-7">
               <h2 class="u-text u-text-5">3位&nbsp; 2,000,000 KBRU</h2>
@@ -230,7 +280,10 @@
                 </div>
               </div>
             </div>
+
           </div>
+ -->
+
         </div>
       </div>
     </section>
@@ -278,9 +331,12 @@
               <div class="mb-3">
                 <label for="formFile" class="form-label">プロフィール画像</label>
                 <input class="form-control" type="file" id="profileImage">
+                <img id="profileImgForm" src="" style="width: 40px;">
               </div>
 
             </div>
+
+            <input type="hidden" id="mode" name="mode" value="">
           </div>
           <div id="userCreateFooter" class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
@@ -294,14 +350,19 @@
       var flg = 0;
       $(function() {
 
-        $('#userCreate').on('click', async function() {
-          console.dir(app);
+        // 富豪ランキングの表示
+        getAndShowRaning(5)
 
-          // 画像をFirebase Storageに登録
-          const file = document.getElementById("profileImage").files[0];
-          profileImagePath = await putStorage(file) // この中でFirebase usersへの登録も行なっている
 
-        });
+
+        // $('#userCreate').on('click', async function() {
+        //   console.dir(app);
+
+        //   // 画像をFirebase Storageに登録
+        //   const file = document.getElementById("profileImage").files[0];
+        //   profileImagePath = await putStorage(file, $('#mode').val()) // この中でFirebase usersへの登録も行なっている
+
+        // });
 
       });
 
