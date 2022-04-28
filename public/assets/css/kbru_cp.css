@@ -1,0 +1,84 @@
+@media screen and (max-width: 769px) {
+
+  .topMsgDiv {
+    font-size: 1.3rem; 
+    width: 80%;
+    margin-top:30px;
+  }
+
+  .topLogo {
+    width: 70%;
+    margin-top: 100px;
+  }
+
+  .currentBalanceDiv {
+    font-size:30px; 
+    font-weight:700;
+    width:80%;
+    text-align: center;
+  }
+
+  .userMenuDiv {
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .sendTokenDiv {
+    width:100%;
+    /* min-width: 500px; */
+    /* display:flex; 
+    justify-content: center; */
+  }
+
+  .sendTokenDiv2 {
+    padding: 0px 30px;
+    /* width: 600px; */
+  }
+
+  /* .connectBtnMain {
+    font-size: 40px; 
+    font-weight: 700; 
+    padding: 5px 50px;
+  } */
+
+  .currentBalanceLi{
+    display: none;
+  }
+
+  .connectWalletLi {
+    display: none;
+  }
+
+  .usernameLi {
+    display: none;
+  }
+
+  .cpMenu {
+    display: "";
+    /* visibility:visible; */
+  }
+
+  .pcMenu {
+    display: none;
+    /* visibility: hidden; */
+  }
+
+  .rewardDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;        
+  }
+
+  .rewardListDiv {
+    display:flex; 
+    justify-content: center;
+    flex-wrap: wrap; 
+    color:black;
+    width:80%;
+  }
+
+}
+
+
+

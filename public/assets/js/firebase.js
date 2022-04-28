@@ -41,7 +41,7 @@ async function getUserInfo(address) {
 
 
 async function setNickname(nickname) {
-  $("#username").html(`(${nickname})`)
+  $(".username").html(`(${nickname})`)
 }
 
 async function createUser(userData, changeMsg = true, showUserData = true) {
@@ -73,9 +73,11 @@ async function editUser(userData) {
     const userRef = db.collection('users').doc(userInfo.docId)
     await userRef.update(userData)
 
+    userInfo = await getUserInfo(user)
+
     await setNickname($('#nickname').val())
     // if (userData.profilePhoto !== undefined && userData.profilePhoto != "" ) {
-    setProfileImg(userData.profilePhoto)
+    setProfileImg(userInfo.profilePhoto)
     // }
 
     showMsg()
@@ -97,7 +99,10 @@ async function putStorage(file, mode) {
     //画像ファイルのアップロード
     profileImagePath = ""
 
-    const uploadTask = storageRef.child("profile/" + file.name).put(file, metadata);
+    // profilePhoto = "profile/" + `${userInfo.docId}_` + file.name
+    profilePhoto = `profile/${userInfo.docId}/${file.name}`
+
+    const uploadTask = storageRef.child(`profile/${userInfo.docId}/${file.name}`).put(file, metadata);
     console.log(uploadTask);
 
     await uploadTask.on(
@@ -115,13 +120,15 @@ async function putStorage(file, mode) {
             break;
         }
 
-        if (progress === 100 && flg === 0) {
+        // if (progress === 100 && flg === 0) {
+        if (progress === 100) {
           console.log("100%です。");
-          profileImagePath = snapshot.metadata.fullPath
+          // profileImagePath = snapshot.metadata.fullPath
+          profileImagePath = profilePhoto
 
           // var display = document.querySelector(".disN");
           // display.classList.replace("disN", "disB");
-          flg = 1;
+          // flg = 1;
 
 
           // データを Firestoreに登録
@@ -251,7 +258,7 @@ async function getAndShowRaning(pageSize) {
                 <div class="u-layout-row">
                   <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-1">
                     <div class="u-container-layout u-container-layout-2">
-                      <img id="rankingProfile_${i}" class="u-image u-image-default u-preserve-proportions u-image-2" src="" alt="" data-image-width="92" data-image-height="74">
+                      <img class="u-image u-image-default u-preserve-proportions u-image-2 rankingProfile_${i}" src="" alt="" data-image-width="92" data-image-height="74">
                     </div>
                   </div>
                   <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">

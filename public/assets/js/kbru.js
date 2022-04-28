@@ -36,17 +36,22 @@ $(document).ready(async () => {
 function showHideConnectButton(connect) {
   if (connect == 'true') {
     // コネクト時
-    $('#user_address').show()
-    $('#connect_wallet_nav').hide()  
+    $('.userinfoForm').show()
+    $('.connectWalletNav').hide()  
   } else {
     // 未コネクト時
-    $('#user_address').hide()
-    $('#connect_wallet_nav').show()  
+    $('.userinfoForm').hide()
+    $('.connectWalletNav').show()  
   }
 
 }
 
-$("#user_address").click(() => {
+$(".userinfoForm").click(() => {
+
+  $('#userCreateFooter').show()
+  $('#userCreateForm').show()
+  $('#spanMsg').html('')
+
   openModal();
 });
 
@@ -58,19 +63,23 @@ $(".btn.login").click(async () => {
 $("#sendToken").click(async () => {
   console.log('alert send token');
 
-  openMsgModal()
+  // 入力チェック
+  if ($("#amount").val() != '' && $("#to").val() != '') {
+    openMsgModal()
 
-  // const decimals = 18;
-  // const input = $("#amount").val().toString();
-  // // amount = BigNumber.from(input).mul(BigNumber.from(10).pow(decimals));
-  // const amount = web3.utils.parseUnits(input, decimals)
+    // const decimals = 18;
+    // const input = $("#amount").val().toString();
+    // // amount = BigNumber.from(input).mul(BigNumber.from(10).pow(decimals));
+    // const amount = web3.utils.parseUnits(input, decimals)
+  
+    // amount = ($("#amount").val() * 10**18).toString()
+  
+    amount = $("#amount").val()
+    await transferToken($("#to").val(), amount)  
+  } else {
+    alert('「送信先ウォレットアドレス」と「送信KBRU数」を入力してください')
+  }
 
-  // amount = ($("#amount").val() * 10**18).toString()
-
-  amount = $("#amount").val()
-
-
-  await transferToken($("#to").val(), amount)
 
 });
 
@@ -94,7 +103,7 @@ async function connectWallet() {
     userInfo = await getUserInfo(user)  // Firebase ユーザー情報取得
 
     $(".btn.login").html("Connected") // ボタンを「Connected」に変える
-    $("#user_address").html(shortAddress(user)) // ウォレットアドレスを表示
+    $(".userinfoForm").html(shortAddress(user)) // ウォレットアドレスを表示
     $("#userMenu").fadeIn(1000);  // ユーザーメニューを表示
 
     // もし新規だったユーザーだった場合は登録フォームを表示する
@@ -120,7 +129,7 @@ async function connectWallet() {
 
 
     currentBalance = await getCurrentBalance(user); // 現在の所有KBRUを取得
-    $("#currentBalance").html(`${currentBalance.toLocaleString()} KBRU`)
+    $(".currentBalance").html(`${currentBalance.toLocaleString()} KBRU`)
 
     tokenInst.events.Transfer({ filter: {to: user} }, (err, event) => {
       console.log('あなたにKBRUが届きました')
@@ -334,46 +343,57 @@ async function transferToken(to, amount) {
   //   console.log
   // );
 
-  let method = tokenInst.methods.transfer(to, web3.utils.toWei(amount));
-  let gas = await method.estimateGas({from: user});
-  console.log('estimateGas=' + gas);
+  try {
 
-  let gasPrice = await web3.eth.getGasPrice();
-  console.log('gasPrice=' + gasPrice);
+    let method = tokenInst.methods.transfer(to, web3.utils.toWei(amount));
+    let gas = await method.estimateGas({from: user});
+    console.log('estimateGas=' + gas);
+
+    let gasPrice = await web3.eth.getGasPrice();
+    console.log('gasPrice=' + gasPrice);
   
   
-
-  const receipt = await tokenInst.methods.transfer(to, web3.utils.toWei(amount))
-  .send(
-    {
-      from: user,
-      gas: gas + 50000,
-      gasPrice: gasPrice,
-      // gas: 1500000,
-      // // gasPrice: '4000000'
-      // gasPrice: '80000000'
-    }
-  )
-  .on('receipt', function(){
-    // alert('transfer end');      
-  });
+    const receipt = await tokenInst.methods.transfer(to, web3.utils.toWei(amount))
+    .send(
+      {
+        from: user,
+        gas: gas + 50000,
+        gasPrice: gasPrice,
+        // gas: 1500000,
+        // // gasPrice: '4000000'
+        // gasPrice: '80000000'
+      }
+    )
+    .on('receipt', function(){
+      alert('transfer end');      
+    });
+  
+  } catch (error) {
+    alert(error.message)
+    hideMsgModal()
+  }
 
 }
 
 function openModal() {
     $('#mode').val('')
 
-    var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
-      keyboard: false
-    })
-
-    if (userInfo.nickname !== undefined) {
-      $('#nickname').val(userInfo.nickname)
-      setProfileImg(userInfo.profilePhoto, "profileImgForm")  
-      $('#mode').val('edit')      
+    try {
+      var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+        keyboard: false
+      })
+  
+      if (userInfo.nickname !== undefined) {
+        $('#nickname').val(userInfo.nickname)
+        setProfileImg(userInfo.profilePhoto, "profileImgForm")  
+        $('#mode').val('edit')      
+      }
+  
+      myModal.show();
+    } catch (ex) {
+      console.log(ex)
     }
 
-    myModal.show();
 }
 
 function setProfileImg(profilePath, target = "profileImg") {
@@ -383,11 +403,27 @@ function setProfileImg(profilePath, target = "profileImg") {
     const gsReference = storageRef.child(profilePath);
   
     gsReference.getDownloadURL().then((downloadURL) => {
-      document.getElementById(target).src = downloadURL;
+      // document.getElementById(target).src = downloadURL;
+      // document.getElementsByClassName(target).src = downloadURL;
+
+      const elements = document.getElementsByClassName(target); 
+      for( let i = 0 ; i < elements.length ; i ++ ) {
+        elements[i].src = downloadURL;
+      }
+
+      // $(`.${target}`).src = downloadURL;
       console.log(downloadURL)
     });
   } else {
-    document.getElementById(target).src = "./assets/images/default_profile_img.jpg";
+    // document.getElementById(target).src = "./assets/images/default_profile_img.jpg";
+    // $(`.${target}`).src = "./assets/images/default_profile_img.jpg";
+    // document.getElementsByClassName(target).src = "./assets/images/default_profile_img.jpg";
+
+    const elements = document.getElementsByClassName(target); 
+    for( let i = 0 ; i < elements.length ; i ++ ) {
+      elements[i].src = "./assets/images/default_profile_img.jpg";
+    }
+
   }
   
 
@@ -401,7 +437,7 @@ async function getCurrentBalance(address) {
 
   console.log(balance);
 
-  $("#balance").html(`あなたは ${balance.toLocaleString()} KBRU 持っています`)
+  $("#balance").html(`あなたは<br class="br-sp"> ${balance.toLocaleString()} KBRU <br class="br-sp">持っています`)
 
   // もしindex.htmlなら users.currentBalanceを更新
   var currentFile = window.location.href.split('/').pop();

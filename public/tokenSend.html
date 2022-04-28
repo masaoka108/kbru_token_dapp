@@ -11,6 +11,8 @@
     <!-- デフォルト -->
     <link rel="stylesheet" href="./assets/css/nicepage.css" media="screen">
     <link rel="stylesheet" href="./assets/css/Home.css" media="screen">
+    <link rel="stylesheet" href="./assets/css/kbru_pc.css" >
+    <link rel="stylesheet" href="./assets/css/kbru_cp.css" >
     <script type="text/javascript" src="./assets/js/jquery.js"></script>
     <script type="text/javascript" src="./assets/js/nicepage.js"></script>
     <script type="text/javascript" src="./assets/js/common.js"></script>
@@ -59,7 +61,8 @@
     <meta property="og:title" content="Home">
     <meta property="og:type" content="website">
   </head>
-  <body data-home-page="Home.html" data-home-page-title="Home" class="u-body u-xl-mode"><header class="u-clearfix u-header u-header" id="sec-0a63"><div class="u-clearfix u-sheet u-sheet-1">
+  <body data-home-page="Home.html" data-home-page-title="Home" class="u-body u-xl-mode">
+    <header class="u-clearfix u-header u-header" id="sec-0a63"><div class="u-clearfix u-sheet u-sheet-1">
       <a style="text-decoration: none;color:black" href="./index.html">
         <h1 class="u-align-left u-text u-text-default u-text-1">KBRU Token</h1>
       </a>
@@ -67,10 +70,17 @@
           <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
             <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
               <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
-              <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
-</g></svg>
+              <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                  <rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect>
+                  <rect y="13" width="16" height="2"></rect>
+                </g>
+              </svg>
             </a>
           </div>
+
+
+
           <div class="u-nav-container">
 
             <li class="u-nav-item">
@@ -88,6 +98,9 @@
               </li>
             </ul>
           </div>
+
+
+
           <div class="u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-inner-container-layout u-sidenav-overflow">
@@ -100,8 +113,13 @@
             </div>
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
+
+
         </nav>
-      </div></header>
+
+
+      </div>
+    </header>
 
     <section class="u-align-center u-clearfix u-shading " id="carousel_745d">
       <div class="u-list u-list-1">
@@ -114,11 +132,11 @@
                 <br></b>
             </h1>
 
-          <div style=" display:flex; justify-content: center;">
-            <div style="width:50%;min-width: 500px;">
+          <div class="sendTokenDiv">
+            <div class="sendTokenDiv2">
               <div class="mb-3" style="display: flex; flex-direction: column;">
                 <label for="formFile" class="form-label" style="color:black;text-align: left;">送信先ウォレットアドレス</label>
-                <input id="to" type="input" class="form-control" name="nickname" placeholder="0xf8.....">
+                <input id="to" type="input" class="form-control walletAddressTxt" name="nickname" placeholder="0xf8.....">
               </div>
 
               <div class="mb-3" style="display: flex; flex-direction: column; color:black">
@@ -186,7 +204,6 @@
       </div>
     </div>
 
-
     <script>
 
       async function openMsgModal() {
@@ -199,12 +216,14 @@
       }
 
       async function hideMsgModal() {
-        var myModal = new bootstrap.Modal(document.getElementById('msgModal'), {
-          keyboard: false,
-          backdrop: "static"
-        })
+        // var myModal = new bootstrap.Modal(document.getElementById('msgModal'), {
+        //   keyboard: false,
+        //   backdrop: "static"
+        // })
 
-        myModal.hide();
+        // myModal.hide();
+
+        $('#msgModal').modal('hide');
       }
 
       function changeModalMsg(msg) {        
