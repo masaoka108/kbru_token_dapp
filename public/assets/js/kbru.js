@@ -208,23 +208,31 @@ async function connectWallet() {
 
 }
 
-async function updateCurrentBalanceTotalSendAmount(address) {
+async function updateCurrentBalanceTotalSendAmount(address, amount = 0) {
   console.log('updateCurrentBalanceTotalSendAmount start')
 
   // currentBalance 取得
   currentBalance = await getCurrentBalance(address)
 
-  // totalSendAmount 取得
-  totalSendAmount = await getTotalSendAmount(address)
+  updateData = {
+    currentBalance: currentBalance
+  }
 
-  console.log(currentBalance)
-  console.log(totalSendAmount)
+  if (amount > 0) {
+
+    // totalSendAmount 取得
+    targetUser = await getUserInfo(address)
+    totalSendAmount = parseFloat(targetUser.totalSendAmount) + parseFloat(amount)
+
+    updateData.totalSendAmount = totalSendAmount
+
+  }
+
+  // console.log(currentBalance)
+  // console.log(totalSendAmount)
   
   // await updateUser(address, {
-  await updateUser(address, {
-      currentBalance: currentBalance,
-    totalSendAmount: totalSendAmount
-  })
+  await updateUser(address, updateData)
 
 }
 
@@ -233,7 +241,7 @@ async function getTotalSendAmount(address) {
   tokenHistoryData = await getTokenSendHistory(kbruAddr,abi.kbru, address, 0, 'latest')
 
   for (let i = 0; i < tokenHistoryData.length; i++) {
-    totalSend += parseInt(tokenHistoryData[i].value)
+    totalSend += parseFloat(tokenHistoryData[i].value)
   }
 
   return totalSend
@@ -400,7 +408,7 @@ async function transferToken(to, amount) {
         createTokenHistory(user, to, amount)
 
         // 自分の currentBalance, totalSendAmount を更新
-        await updateCurrentBalanceTotalSendAmount(user)
+        await updateCurrentBalanceTotalSendAmount(user, amount)
 
         // 送信先ユーザーがFirebaseにいるか確認、いなければ登録する
         toUserInfo = await getUserInfo(to.toLowerCase())

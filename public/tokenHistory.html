@@ -238,7 +238,7 @@
             sign = ''
             style = ''
             if (tokenHistoryData[i].from.toUpperCase() == user.toUpperCase()) {
-              totalSend += parseInt(tokenHistoryData[i].value)
+              totalSend += parseFloat(tokenHistoryData[i].value)
               sign = '-'
               style = 'color:blue;'
             }
@@ -272,6 +272,9 @@
           }
 
           $('#totalSendAmount').html(totalSend + ' KBRU')
+
+          // totalSendAmount を更新する
+          updateUser(user, {totalSendAmount: totalSend})
 
           modalLoader.hide();
 
