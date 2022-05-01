@@ -23,3 +23,10 @@ const timestampToTime = (timestamp) => {
 function shortAddress(addr) {
   return addr.substr(0, 5) + '...' + addr.substr(-5)
 }
+
+function sleep(waitMsec) {
+  var startMsec = new Date();
+ 
+  // 指定ミリ秒間だけループさせる（CPUは常にビジー状態）
+  while (new Date() - startMsec < waitMsec);
+}

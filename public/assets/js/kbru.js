@@ -93,6 +93,14 @@ async function connectWallet() {
   }
 
   try{
+    // MetaMaskが入っているか確認
+
+    if (!(window.ethereum && window.ethereum.isMetaMask)) {
+      //入っていない場合（スマホの場合）
+      launchApp()
+      // $('#openMetamask').click()
+    } else {
+      // 入っている場合
     // 「接続して良いか？」を聞くPopUpを表示
     const accounts = await window.ethereum.request({
       method: "eth_requestAccounts",
@@ -141,42 +149,57 @@ async function connectWallet() {
 
       // (async () => {
 
-        console.log('あなたがKBRUを送信しました')
+      console.log('あなたがKBRUを送信しました')
+      // alert('KBRUを送信しました')
 
-        // メッセージを変化させる
-        changeModalMsg('ブロックチェーンへの書き込みが完了しました。<br>システムデータを更新中です。<br>引き続きこのままでお待ち下さい🙏')
+      // try {
 
-        // Firebaseに履歴を保存
-        createTokenHistory(event.returnValues.from, event.returnValues.to, event.returnValues.value)
+      //     // メッセージを変化させる
+      //     changeModalMsg('ブロックチェーンへの書き込みが完了しました。<br>システムデータを更新中です。<br>引き続きこのままでお待ち下さい🙏')
 
-        // 自分の currentBalance, totalSendAmount を更新
-        await updateCurrentBalanceTotalSendAmount(event.returnValues.from)
-
-        // 送信先ユーザーがFirebaseにいるか確認、いなければ登録する
-        toUserInfo = await getUserInfo(event.returnValues.to.toLowerCase())
-        if(toUserInfo.walletAddress == undefined) {
-          userData = {
-            "walletAddress" : event.returnValues.to.toLowerCase(),
-            "nickname": "",
-            "profilePhoto": "",
-          }
-          await createUser(userData , false, false)
-        }
-
-        // 送信先ユーザーの currentBalance, totalSendAmount を更新
-        await updateCurrentBalanceTotalSendAmount(event.returnValues.to)
+      //     // Firebaseに履歴を保存
+      //     createTokenHistory(event.returnValues.from, event.returnValues.to, event.returnValues.value)
+  
+      //     // 自分の currentBalance, totalSendAmount を更新
+      //     await updateCurrentBalanceTotalSendAmount(event.returnValues.from)
+  
+      //     // 送信先ユーザーがFirebaseにいるか確認、いなければ登録する
+      //     toUserInfo = await getUserInfo(event.returnValues.to.toLowerCase())
+      //     if(toUserInfo.walletAddress == undefined) {
+      //       userData = {
+      //         "walletAddress" : event.returnValues.to.toLowerCase(),
+      //         "nickname": "",
+      //         "profilePhoto": "",
+      //       }
+      //       await createUser(userData , false, false)
+      //     }
+  
+      //     // 送信先ユーザーの currentBalance, totalSendAmount を更新
+      //     await updateCurrentBalanceTotalSendAmount(event.returnValues.to)
+          
+      //     // メッセージを変化させる
+      //     setModalEnd()
+  
+      //     console.log(`event called: ${event.event}`);
+      //     console.log(JSON.stringify(event, null, "    "));
+  
+      //     // })();
         
-        // メッセージを変化させる
-        setModalEnd()
 
-        console.log(`event called: ${event.event}`);
-        console.log(JSON.stringify(event, null, "    "));
+      // } catch (error) {
+      //   alert(error.message)
+      //   hideMsgModal()
+      // }
+    
 
-        // })();
 
     });
 
     connectFlg = 1
+
+  }   
+
+
 
   } catch (error) {
     alert(error.message)
@@ -364,8 +387,58 @@ async function transferToken(to, amount) {
         // gasPrice: '80000000'
       }
     )
-    .on('receipt', function(){
-      alert('transfer end');      
+    .on('receipt', async function(){
+      console.log('transfer end');
+      // alert('transfer end')
+
+      try {
+
+        // メッセージを変化させる
+        changeModalMsg('ブロックチェーンへの書き込みが完了しました。<br>システムデータを更新中です。<br>引き続きこのままでお待ち下さい🙏')
+
+        // Firebaseに履歴を保存
+        createTokenHistory(user, to, amount)
+
+        // 自分の currentBalance, totalSendAmount を更新
+        await updateCurrentBalanceTotalSendAmount(user)
+
+        // 送信先ユーザーがFirebaseにいるか確認、いなければ登録する
+        toUserInfo = await getUserInfo(to.toLowerCase())
+        if(toUserInfo.walletAddress == undefined) {
+          userData = {
+            "walletAddress" : to.toLowerCase(),
+            "nickname": "",
+            "profilePhoto": "",
+          }
+          await createUser(userData , false, false)
+        }
+
+        // 送信先ユーザーの currentBalance, totalSendAmount を更新
+        await updateCurrentBalanceTotalSendAmount(to)
+        
+        // メッセージを変化させる
+        setModalEnd()
+
+
+
+
+
+
+
+
+        // console.log(`event called: ${event.event}`);
+        // console.log(JSON.stringify(event, null, "    "));
+
+        // })();
+      
+
+    } catch (error) {
+      alert(error.message)
+      hideMsgModal()
+    }
+
+
+
     });
   
   } catch (error) {
@@ -467,3 +540,83 @@ async function sendToken(to, amount) {
 
 }
 
+
+
+
+// function launchApp() {
+//   if (
+//     navigator.userAgent.indexOf('iPhone') > 0
+//     || navigator.userAgent.indexOf('iPad') > 0
+//     || navigator.userAgent.indexOf('iPod') > 0
+//   )
+//   {
+//     //  document.location = "fb://profile/341219895930508";
+//     // document.location = "https://metamask.app.link/dapp/kbru-test.web.app/";
+//     location.href = "https://metamask.app.link/dapp/kbru-test.web.app/";
+
+//     //  var time = (new Date()).getTime();
+//     //  setTimeout(function(){
+//     //      var now = (new Date()).getTime();
+
+//     //      if((now-time)<400) {
+//     //              document.location = "https://itunes.apple.com/jp/app/facebook/id284882215?mt=8&uo=4";
+//     //      }
+//     //  }, 300);
+//   }
+//   else if(navigator.userAgent.indexOf('Android') > 0)
+//   {
+//                   // document.location = "intent://profile/341219895930508#Intent;scheme=fb;package=com.facebook.katana;end";
+//                   document.location = "metamask://dapp/kbru-test.web.app"
+//   }
+
+// };
+
+
+function launchApp() {
+
+  if (
+    navigator.userAgent.indexOf('iPhone') > 0
+    || navigator.userAgent.indexOf('iPad') > 0
+    || navigator.userAgent.indexOf('iPod') > 0
+  )
+  {
+    document.location = "https://metamask.app.link/dapp/kbru-test.web.app/";
+
+  }
+  else if(navigator.userAgent.indexOf('Android') > 0)
+  {
+      document.location = "metamask://dapp/kbru-test.web.app"
+      var time = (new Date()).getTime();
+      setTimeout(function(){
+          var now = (new Date()).getTime();
+ 
+          if((now-time)<400) {
+                  document.location = "https://metamask.app.link/dapp/kbru-test.web.app/";
+          }
+      }, 300);
+ 
+  } 
+  else {
+    document.location = "metamask://dapp/kbru-test.web.app"
+    var time = (new Date()).getTime();
+    setTimeout(function(){
+        var now = (new Date()).getTime();
+
+        if((now-time)<400) {
+                document.location = "https://metamask.app.link/dapp/kbru-test.web.app/";
+        }
+    }, 300);
+
+  }
+
+  var time = (new Date()).getTime();
+  setTimeout(function(){
+      var now = (new Date()).getTime();
+
+      if((now-time)<400) {
+              document.location = "https://apps.apple.com/jp/app/metamask-blockchain-wallet/id1438144202";
+      }
+  }, 300);
+
+
+};
