@@ -65,4 +65,12 @@
     color:black;
     width:80%;
   }
+
+  #sendToDiv ul{
+    margin-top:0px;
+    color:black;
+    text-align: left;
+  }
+
+
 }

@@ -7,7 +7,7 @@ var connectFlg = 0
 let currentBalance;
 
 $(document).ready(async () => {
-  if(window.ethereum) { // MetaMaskが入っているか確認
+    if(window.ethereum) { // MetaMaskが入っているか確認
     web3 = new Web3(Web3.givenProvider);
 
     var version = web3.version.api;
@@ -28,7 +28,14 @@ $(document).ready(async () => {
 
     showHideConnectButton(localStorage?.getItem('isWalletConnected'))
 
-    // // テスト
+
+    // トークン送信画面の場合、toセレクトボックスを生成
+    var currentFile = window.location.href.split('/').pop();
+    if(currentFile == 'tokenSend.html') {
+      createEditableSelect('toEditableSelect')
+    }
+  
+
 
   }
 })
@@ -63,8 +70,18 @@ $(".btn.login").click(async () => {
 $("#sendToken").click(async () => {
   console.log('alert send token');
 
+  var toAddress = ''
+
+  if ($(`#toWalletAddress`).val() != '') {
+    toAddress = $(`#toWalletAddress`).val()
+  } else {
+    if ($(`#toEditableSelect`).val() != '') {
+      toAddress = $(`#toEditableSelect`).val()
+    }    
+  }
+
   // 入力チェック
-  if ($("#amount").val() != '' && $("#to").val() != '') {
+  if ($("#amount").val() != '' && toAddress != '') {
     openMsgModal()
 
     // const decimals = 18;
@@ -75,7 +92,7 @@ $("#sendToken").click(async () => {
     // amount = ($("#amount").val() * 10**18).toString()
   
     amount = $("#amount").val()
-    await transferToken($("#to").val(), amount)  
+    await transferToken(toAddress, amount)  
   } else {
     alert('「送信先ウォレットアドレス」と「送信KBRU数」を入力してください')
   }

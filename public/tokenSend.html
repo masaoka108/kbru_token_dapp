@@ -17,6 +17,9 @@
     <script type="text/javascript" src="./assets/js/nicepage.js"></script>
     <script type="text/javascript" src="./assets/js/common.js"></script>
 
+    <script type="text/javascript" src="./assets/js/jquery-editable-select.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/jquery-editable-select.min.css" media="screen">
+
     <meta name="generator" content="Nicepage 4.8.2, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
     <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i">
@@ -134,9 +137,14 @@
 
           <div class="sendTokenDiv">
             <div class="sendTokenDiv2">
-              <div class="mb-3" style="display: flex; flex-direction: column;">
+              <div id="sendToDiv" class="mb-3" style="display: flex; flex-direction: column;">
                 <label for="formFile" class="form-label" style="color:black;text-align: left;">送信先ウォレットアドレス</label>
-                <input id="to" type="input" class="form-control walletAddressTxt" name="nickname" placeholder="0xf8.....">
+                <!-- <input id="to" type="input" class="form-control walletAddressTxt" name="nickname" placeholder="0xf8....."> -->
+
+                <select id="toEditableSelect" class="form-control walletAddressTxt" style="color: black;">
+                </select>                
+                
+                <input type="hidden" id="toWalletAddress" name="toWalletAddress" value="">
               </div>
 
               <div class="mb-3" style="display: flex; flex-direction: column; color:black">
@@ -236,8 +244,32 @@
       }      
       
 
-      // $(function() {
-      //   $('#userCreate').on('click', async function() {
+
+      $('#toEditableSelect').editableSelect({
+        filter: true
+      }).on('select.editable-select', function (e, el) {
+        // el is the selected item "option"
+        $('#toWalletAddress').val(el.data('address'));
+      })
+
+      $('#toEditableSelect').on('input', function(){
+        $('#toWalletAddress').val("");
+      });
+      
+      $('#toEditableSelect').attr("placeholder", "送信先を選択するかウォレットアドレス(例:0xf... )を入力して下さい");
+
+      // $(window).on('load', function() {
+      //   // to セレクトBOXを作成
+
+      //   createEditableSelect('toEditableSelect')
+      // });
+
+
+      $(function() {
+
+
+
+        //   $('#userCreate').on('click', async function() {
       //     console.dir(app);
 
       //     (async () => {
@@ -258,7 +290,7 @@
 
       //   });
 
-      // });
+      });
 
     </script>
 

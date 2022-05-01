@@ -291,6 +291,38 @@ async function getAndShowRaning(pageSize) {
 
 }
 
+async function createEditableSelect(targetId) {
+
+  return new Promise(async (resolve, reject) => {
+
+    try {
+
+      const querySnapshot = await db.collection("users").where("walletAddress", "!=", user).get()
+        .then(querySnapshot => {
+            querySnapshot.forEach((doc) => {
+
+              console.log(doc.id, " => ", doc.data());
+              _userInfo = doc.data()
+              _userInfo.docId = doc.id
+
+              if (_userInfo.nickname != "") {
+                // $('#' + targetId).append($('<option>').html(_userInfo.nickname).val(_userInfo.walletAddress));
+                // $('#' + targetId).editableSelect('add', _userInfo.nickname, [0, [{"attr":"ccc"}, [{"aaa": "bbb"}]]]);
+                $('#' + targetId).editableSelect('add', `${_userInfo.nickname} (${_userInfo.walletAddress})`, 1, {}, {"address": _userInfo.walletAddress});
+              }
+          });
+          resolve(_userInfo)
+        })
+    
+    } catch (error) {
+      console.log("Error getting documents: ", error);
+    }
+  })
+
+
+}
+
+
 $(function() {
   $('#userCreate').on('click', async function() {
     console.dir(app);
@@ -314,4 +346,5 @@ $(function() {
     }
 
   });
+
 })
