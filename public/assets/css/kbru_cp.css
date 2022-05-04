@@ -12,10 +12,12 @@
   }
 
   .currentBalanceDiv {
-    font-size:30px; 
-    font-weight:700;
-    width:80%;
+    /* font-size:30px; 
+    font-weight:700; */
+    /* width:80%; */
     text-align: center;
+    font-family:hiragino-w8;
+    font-size:20px;
   }
 
   .userMenuDiv {
@@ -27,13 +29,16 @@
   .sendTokenDiv {
     width:100%;
     /* min-width: 500px; */
-    /* display:flex; 
-    justify-content: center; */
+    display:flex; 
+    justify-content: center;
+    /* flex-shrink: 0; */
   }
 
   .sendTokenDiv2 {
+    /* padding: 0px 30px; */
     padding: 0px 30px;
-    /* width: 600px; */
+    flex-shrink: 0;
+    width: 100%;
   }
 
   /* .connectBtnMain {
@@ -67,7 +72,8 @@
   .rewardDiv{
     display: flex;
     flex-direction: column;
-    align-items: center;        
+    align-items: center;    
+    margin-bottom: 80px;    
   }
 
   .rewardListDiv {
@@ -78,6 +84,16 @@
     width:80%;
   }
 
+  #sendToDiv ul{
+    margin-top:0px;
+    color:black;
+    text-align: left;
+  }
+
+  #sendToDiv{
+    align-items: center;
+    margin-bottom:30px;
+  }
 }
 
 

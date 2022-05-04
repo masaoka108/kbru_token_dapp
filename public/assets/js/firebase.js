@@ -249,32 +249,54 @@ async function getAndShowRaning(pageSize) {
         //     console.error("Error updating document: ", error);
         // });
 
+
+        // $('#rankingList').append(`
+        //   <div class="u-container-style u-list-item u-repeater-item u-white u-list-item-1">
+        //   <div class="u-container-layout u-similar-container u-container-layout-1">
+        //     <h2 class="u-text u-text-1">${i + 1}位&nbsp; ${doc.data().currentBalance.toLocaleString()} KBRU</h2>
+        //     <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
+        //       <div class="u-layout">
+        //         <div class="u-layout-row">
+        //           <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-1">
+        //             <div class="u-container-layout u-container-layout-2">
+        //               <img class="u-image u-image-default u-preserve-proportions u-image-2 rankingProfile_${i}" src="" alt="" data-image-width="92" data-image-height="74">
+        //             </div>
+        //           </div>
+        //           <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
+        //             <div class="u-container-layout u-container-layout-3">
+        //               <p class="u-text u-text-default u-text-2">
+        //                 <span style="font-size: 2.25rem; font-weight: 700;">${doc.data().nickname}</span><br>
+        //                 <span style="font-size: 1rem; font-weight: 700;">${shortAddress(doc.data().walletAddress)}</span>
+        //               </p>
+        //             </div>
+        //           </div>
+        //         </div>
+        //       </div>
+        //     </div>
+        //   </div>
+        // </div>
+        // `)
+
         $('#rankingList').append(`
-          <div class="u-container-style u-list-item u-repeater-item u-white u-list-item-1">
-          <div class="u-container-layout u-similar-container u-container-layout-1">
-            <h2 class="u-text u-text-1">${i + 1}位&nbsp; ${doc.data().currentBalance.toLocaleString()} KBRU</h2>
-            <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
-              <div class="u-layout">
-                <div class="u-layout-row">
-                  <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-1">
-                    <div class="u-container-layout u-container-layout-2">
-                      <img class="u-image u-image-default u-preserve-proportions u-image-2 rankingProfile_${i}" src="" alt="" data-image-width="92" data-image-height="74">
-                    </div>
-                  </div>
-                  <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
-                    <div class="u-container-layout u-container-layout-3">
-                      <p class="u-text u-text-default u-text-2">
-                        <span style="font-size: 2.25rem; font-weight: 700;">${doc.data().nickname}</span><br>
-                        <span style="font-size: 1rem; font-weight: 700;">${shortAddress(doc.data().walletAddress)}</span>
-                      </p>
-                    </div>
-                  </div>
+  
+            <div style="background-color:#C9CACA; display:flex; align-items:center; border-radius: 30px;  margin-bottom:20px; padding: 8px 30px; font-family:hiragino-w8;">
+              <div>
+                <img style="width:40px; margin-right:20px" class="rankingProfile_${i}" src="" alt="">
+              </div>
+              <div>
+                <div>
+                  ${i + 1}位&nbsp; ${doc.data().nickname}
+  
+                </div>
+                <div style="color:white; font-family:hiragino-w6">
+                  ${doc.data().currentBalance.toLocaleString()} KBRU
                 </div>
               </div>
             </div>
-          </div>
-        </div>
         `)
+
+
+
 
         // if (doc.data().profilePhoto != "") {
           setProfileImg(doc.data().profilePhoto, `rankingProfile_${i}`)        

@@ -62,67 +62,127 @@
     <meta property="og:title" content="Home">
     <meta property="og:type" content="website">
   </head>
-  <body data-home-page="Home.html" data-home-page-title="Home" class="u-body u-xl-mode"><header class="u-clearfix u-header u-header" id="sec-0a63"><div class="u-clearfix u-sheet u-sheet-1">
-    <a style="text-decoration: none;color:black" href="./index.html">
-      <h1 class="u-align-left u-text u-text-default u-text-1">KBRU Token</h1>
-    </a>
-        <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+  <body data-home-page="Home.html" data-home-page-title="Home" class="u-body u-xl-mode">
+    <header class="u-clearfix u-header u-header" id="sec-0a63">
+      <div style="border-bottom: 1px solid lightgrey;display:flex;align-items: center;">
+        <a style="text-decoration: none;color:black; margin: 10px 0px 10px 10px;" href="./index.html">
+          <img  src="./assets/images/kbru_token_logo.png" style="width: 100px;" class="logoImg">
+        </a>
+
+        <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1 cpMenu" style="margin-top: 5px;margin-right: 15px;">
+          <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
+            <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+              <img  src="" style="width: 40px;" class="profileImg" >
+            </a>
+          </div>
+
+          <div class="u-nav-container">
+
+          </div>
+
+          <div class="u-nav-container-collapse">
+            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+              <div class="u-inner-container-layout u-sidenav-overflow">
+                <div class="u-menu-close"></div>
+                  <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
+
+                    <li class="u-nav-item currentBalanceLi">
+                      <span class="currentBalance"></span>
+                    </li>
+
+         <li class="u-nav-item connectWalletLi">
+          <button type="button" class="btn btn-warning btn-lg login u-active-white u-border-2 u-border-white u-btn u-btn-round u-button-style u-hover-white u-palette-1-base u-radius-50 u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-1 connectWalletNav">
+            Connect wallet
+          </button>
+
+          <button type="button" class="btn btn-warning btn-lg login u-active-white u-border-2 u-border-white u-btn u-btn-round u-button-style u-hover-white u-palette-1-base u-radius-50 u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-1 userinfoForm">
+            
+          </button>
+
+        </li>
+
+                    
+                    <li class="u-nav-item usernameLi">
+                      <span class="username"></span>
+                    </li>
+        
+                  </ul>
+              </div>
+            </div>
+            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+          </div>
+
+
+        </nav>
+
+
+
+        <nav style="margin-left: auto;margin-right: 20px;" class="pcMenu">
+          
           <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
             <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
               <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
-              <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
-</g></svg>
+              <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                  <rect y="1" width="16" height="2"></rect>
+                  <rect y="7" width="16" height="2"></rect>
+                  <rect y="13" width="16" height="2"></rect>
+                </g>
+              </svg>
             </a>
           </div>
           <div class="u-nav-container">
 
             <ul class="u-nav u-unstyled u-nav-1">
-
-              <li class="u-nav-item">
-                <img id="profileImg" src="" style="width: 40px;">
+              <li class="u-nav-item currentBalanceLi">
+                <span class="currentBalance"></span>
               </li>
 
               <li class="u-nav-item">
-                <span id="user_address"></span>
+                <img src="" style="width: 40px;" class="userinfoForm profileImg">
               </li>
-         
-              <li class="u-nav-item">
-                <span id="username"></span>
+
+              <li class="u-nav-item connectWalletLi">
+                <button type="button" class="btn btn-warning btn-lg login u-active-white u-border-2 u-border-white u-btn u-btn-round u-button-style u-hover-white u-palette-1-base u-radius-50 u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-1 connectWalletNav">
+                  Connect wallet
+                </button>
+
+                <button type="button" class="btn btn-warning btn-lg login u-active-white u-border-2 u-border-white u-btn u-btn-round u-button-style u-hover-white u-palette-1-base u-radius-50 u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-1 userinfoForm">
+                  
+                </button>
+
+              </li>
+
+              
+              <li class="u-nav-item usernameLi">
+                <span class="username"></span>
               </li>
 
             </ul>
           </div>
-          <div class="u-nav-container-collapse">
-            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
-              <div class="u-inner-container-layout u-sidenav-overflow">
-                <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Home.html">Home</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="About.html">About</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Contact.html">Contact</a>
-</li></ul>
-              </div>
-            </div>
-            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
-          </div>
         </nav>
-      </div></header>
+
+      </div>
+    </header>
  
 
-      <section class="u-align-center u-clearfix u-shading " id="carousel_745d">
-        <div class="u-list u-list-1">
-          <!-- <div class="u-repeater u-repeater-1"> -->
-  
-              <h1 style="color:black" class="u-custom-font u-font-montserrat u-text u-title u-text-1">
-                <span style="font-size: 2.25rem;"></span><b>
-                  <span style="font-size: 2.25rem;">KBRUトークンを使いましょう
-                  </span>
-                  <br></b>
-              </h1>
-            
+      <section class="" id="carousel_745d">
+        <div class="">
+          <div style="font-family:hiragino-w8; margin-top:50px; margin-bottom:50px; display: flex; justify-content: center;">
+            <span class="markYellow" style="text-align: center;font-size:22px">KBRU トークンでできること</span>
+          </div>
+
+
+          
             <div class="rewardDiv">
               <div id="rewardList" class="rewardListDiv">
-              <div>
-            <div>
+              </div>
+
+              <div style="font-size:10px; margin-top:30px">
+                ※価格や内容を予告なく変更する場合があります。
+              </div>  
+            </div>
+
         </div>
       </section>
   
@@ -132,21 +192,12 @@
 
 
 
-    <footer style="margin-top:100px;" class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-c7ba"><div class="u-clearfix u-sheet u-sheet-1">
-        <p class="u-small-text u-text u-text-variant u-text-1">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
-      </div></footer>
-    <section class="u-backlink u-clearfix u-grey-80">
-      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-        <span>Website Templates</span>
-      </a>
-      <p class="u-text">
-        <span>created with</span>
-      </p>
-      <a class="u-link" href="" target="_blank">
-        <span>Website Builder Software</span>
-      </a>. 
-    </section>
-
+      <footer style="width:100%; padding:10px; background-color: #333333;" >
+        <div style="display:flex; justify-content: center;">
+            <img  src="./assets/images/kbru_token_logo_negative.png" style="width: 100px;" class="logoImg">
+        </div>
+      </footer>
+  
 
 
 
@@ -187,7 +238,6 @@
 
           const db = firebase.firestore();
           await db.collection("rewards")
-          //.where("capital", "==", true)
           .get()
           .then((querySnapshot) => {
 
@@ -216,20 +266,43 @@
 
           async function setList2(gsReference, docData) {
 
-            await gsReference.getDownloadURL().then((downloadURL) => {
-                    $('#rewardList').append(`
-                      <div style="margin:5px 20px">
-                      <img src="${downloadURL}" style="width:200px">
-                      <div>
-                        ${docData.price}KBRU<br>
-                        ${docData.name}<br>
-                        <button type="button" class="btn-reward btn btn-warning btn-lg u-active-white u-border-2 u-border-white u-btn u-btn-round u-button-style u-hover-white u-palette-1-base u-radius-50 u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-1">
-                          この特典にKBRUを使う
-                        </button>
+            if(collection.image_path != '') {
+              await gsReference.getDownloadURL().then((downloadURL) => {
+                  //   $('#rewardList').append(`
+                  //     <div style="margin:5px 20px">
+                  //     <img src="${downloadURL}" style="width:200px">
+                  //     <div>
+                  //       ${docData.price}KBRU<br>
+                  //       ${docData.name}<br>
+                  //       <button type="button" class="btn-reward btn btn-warning btn-lg u-active-white u-border-2 u-border-white u-btn u-btn-round u-button-style u-hover-white u-palette-1-base u-radius-50 u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-1">
+                  //         この特典にKBRUを使う
+                  //       </button>
+                  //     </div>
+                  //   </div>                  
+                  // `)
+
+                  $('#rewardList').append(`
+                      <div style="width:100%;text-align: center;font-family:hiragino-w8;margin:5px 20px; background-color:${docData.background_color}; color:${docData.font_color}; padding: 20px; border-radius: 20px;" class="btn-reward" >
+                        <img src="${downloadURL}" style="width:200px">
+                        <span style="font-size:30px">${docData.name}</span><br>
+                        <div style="margin-bottom:10px">${docData.detail}</div>
+                        <span style="color:#FFF000">${docData.price.toLocaleString()}KBRU</span><br>
+
                       </div>
-                    </div>                  
                   `)
-              })
+
+                })
+
+            } else {
+              $('#rewardList').append(`
+                      <div style="width:100%;text-align: center;font-family:hiragino-w8;margin:5px 20px; background-color:${docData.background_color}; color:${docData.font_color}; padding: 20px; border-radius: 20px;" class="btn-reward" >
+                        <span style="font-size:30px">${docData.name}</span><br>
+                        <div style="margin-bottom:10px">${docData.detail}</div>
+                        <span style="color:#FFF000">${docData.price.toLocaleString()}KBRU</span><br>
+
+                      </div>
+                  `)
+            }
 
           }
 
