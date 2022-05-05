@@ -285,11 +285,10 @@ async function getAndShowRaning(pageSize) {
               </div>
               <div>
                 <div>
-                  ${i + 1}位&nbsp; ${doc.data().nickname}
-  
+                  <span style="margin-right:5px">${i + 1}位</span>${doc.data().nickname}
                 </div>
                 <div style="color:white; font-family:hiragino-w6">
-                  ${doc.data().currentBalance.toLocaleString()} KBRU
+                <span style="margin-right:5px">${doc.data().currentBalance.toLocaleString()}</span>KBRU
                 </div>
               </div>
             </div>

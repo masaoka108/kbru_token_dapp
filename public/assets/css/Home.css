@@ -1,11 +1,13 @@
 @font-face {
   font-family: 'hiragino-w8';
-  src: url('../font/ヒラギノ角ゴシック W8.ttc') format("truetype");
+  /* src: url('../font/HiraKakuStdN-W8-AlphaNum-01.woff') format("woff"); */
+  src: url('../font/HiraKakuStdN-W8-AlphaNum-01.otf') format('opentype');
 }
 
 @font-face {
   font-family: 'hiragino-w6';
-  src: url('../font/ヒラギノ角ゴシック W6.ttc') format("truetype");
+  /* src: url('../font/HiraKakuStdN-W8-AlphaNum-01.woff') format("woff"); */
+  src: url('../font/HiraKakuProN-W6-AlphaNum-01.otf') format('opentype');
 }
 
 .u-section-1 {
