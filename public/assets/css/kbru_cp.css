@@ -68,14 +68,6 @@
     display: none;
     /* visibility: hidden; */
   }
-
-  .rewardDiv{
-    display: flex;
-    flex-direction: column;
-    align-items: center;    
-    margin-bottom: 80px;    
-  }
-
   .rewardListDiv {
     display:flex; 
     justify-content: center;
@@ -94,6 +86,41 @@
     align-items: center;
     margin-bottom:30px;
   }
+
+  .profileImgForm {
+    border-radius: 20%;
+  }
+
+  .profileImg {
+    border-radius: 20%;
+  }
+
+  .rankingProfile {
+    border-radius: 20%;
+  }
+
+  .userInfoBtn {
+    margin: 20px 0px;
+  }
+
+  .mainImg {
+    width:30%;
+  }
+
+  .rewardDiv {
+    width:100%;
+    text-align: center;
+    font-family:hiragino-w8;
+    /* margin:5px 20px; */
+    padding: 20px; 
+    border-radius: 20px;    
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    margin-bottom: 40px;    
+
+  }
+
 }
 
 

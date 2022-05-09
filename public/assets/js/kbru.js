@@ -1,8 +1,9 @@
-console.log("aaaa");
+const kbruAddr = "0x362D3a4bB7D5AF2EA25DDbcd54F782EFb7e26Ab5";
+const supportNetworkId = 4 //RinkeBy
+const supportNetworkName = 'RinkeBy'
 
 let web3, user, tokenInst, firebaseUserId;
 var userInfo, toUserInfo;
-const kbruAddr = "0x362D3a4bB7D5AF2EA25DDbcd54F782EFb7e26Ab5";
 var connectFlg = 0
 let currentBalance;
 
@@ -28,6 +29,21 @@ $(document).ready(async () => {
 
     showHideConnectButton(localStorage?.getItem('isWalletConnected'))
 
+
+    // detect Metamask account change
+    window.ethereum.on('accountsChanged', function (accounts) {
+      console.log('accountsChanges',accounts);
+      location.reload()
+    });
+
+     // detect Network account change
+    window.ethereum.on('networkChanged', function(networkId){
+      console.log('networkChanged',networkId);
+      if (networkId != supportNetworkId) {
+        alert(`ネットワークを${supportNetworkName}に接続して下さい`)
+      }
+    });
+    
 
     // トークン送信画面の場合、toセレクトボックスを生成
     var currentFile = window.location.href.split('/').pop();
@@ -69,6 +85,13 @@ $(".btn.login").click(async () => {
 
 $("#sendToken").click(async () => {
   console.log('alert send token');
+
+  // ネットワーク チェック
+  chainId = await web3.eth.net.getId()
+  if (chainId != supportNetworkId) {
+    alert(`ネットワークを${supportNetworkName}に接続して下さい`)
+    return false;
+  }
 
   var toAddress = ''
 

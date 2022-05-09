@@ -117,7 +117,7 @@
 
 
 
-        <nav style="margin-left: auto;margin-right: 20px;" class="pcMenu">
+        <nav style="margin-left: auto;margin-right: 20px; font-family:hiragino-w6" class="pcMenu">
           
           <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
             <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
@@ -205,16 +205,16 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">KBRUトークンの使い方</h5>
+            <h5 class="modal-title" style="font-family:hiragino-w6;">KBRUトークンの使い方</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
 
           
-          <div class="modal-body">
+          <div class="modal-body" style="font-family:hiragino-w6;">
             
             <span id="spanMsg"></span>  
-            <p>1.<a href="tokenSend.html" target="_blank">コチラ</a>の画面からKBRUを「0xf841....」へ送信します</p>
-            <p>2.ヒオキンさんにDiscordのDMで購入した特典名と自身のウォレットアドレスを伝えて下さい</p>
+            <p>1.<a href="tokenSend.html" target="_blank">コチラ</a>の画面からKBRUを「ヒオキン」へ送信します</p>
+            <p>2.ヒオキンにDiscordやTwitterのDMで購入した特典名と自身のウォレットアドレスをお伝え下さい</p>
             <p>3.確認後、特典の実施を行います🎉</p>
             
           </div>
@@ -266,43 +266,25 @@
 
           async function setList2(gsReference, docData) {
 
+            imgTag = ''
+
             if(collection.image_path != '') {
               await gsReference.getDownloadURL().then((downloadURL) => {
-                  //   $('#rewardList').append(`
-                  //     <div style="margin:5px 20px">
-                  //     <img src="${downloadURL}" style="width:200px">
-                  //     <div>
-                  //       ${docData.price}KBRU<br>
-                  //       ${docData.name}<br>
-                  //       <button type="button" class="btn-reward btn btn-warning btn-lg u-active-white u-border-2 u-border-white u-btn u-btn-round u-button-style u-hover-white u-palette-1-base u-radius-50 u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-1">
-                  //         この特典にKBRUを使う
-                  //       </button>
-                  //     </div>
-                  //   </div>                  
-                  // `)
-
-                  $('#rewardList').append(`
-                      <div style="width:100%;text-align: center;font-family:hiragino-w8;margin:5px 20px; background-color:${docData.background_color}; color:${docData.font_color}; padding: 20px; border-radius: 20px;" class="btn-reward" >
-                        <img src="${downloadURL}" style="width:200px">
-                        <span style="font-size:30px">${docData.name}</span><br>
-                        <div style="margin-bottom:10px">${docData.detail}</div>
-                        <span style="color:#FFF000">${docData.price.toLocaleString()}KBRU</span><br>
-
-                      </div>
-                  `)
-
+                imgTag = `<img src="${downloadURL}" style="width:200px">`
                 })
 
-            } else {
-              $('#rewardList').append(`
-                      <div style="width:100%;text-align: center;font-family:hiragino-w8;margin:5px 20px; background-color:${docData.background_color}; color:${docData.font_color}; padding: 20px; border-radius: 20px;" class="btn-reward" >
+            }
+
+            $('#rewardList').append(`
+                      <div class="rewardDiv btn-reward" style="background-color:${docData.background_color}; color:${docData.font_color};" >
+                        ${imgTag}
                         <span style="font-size:30px">${docData.name}</span><br>
                         <div style="margin-bottom:10px">${docData.detail}</div>
                         <span style="color:#FFF000">${docData.price.toLocaleString()}KBRU</span><br>
 
                       </div>
                   `)
-            }
+
 
           }
 

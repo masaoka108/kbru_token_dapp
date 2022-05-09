@@ -56,7 +56,7 @@
           <img  src="./assets/images/kbru_token_logo.png" style="width: 100px;" class="logoImg">
         </a>
 
-        <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1 cpMenu" style="margin-top: 5px;margin-right: 15px;">
+        <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1 cpMenu" style="margin-top: 5px;margin-right: 15px;font-family:hiragino-w6">
           <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
             <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
               <img  src="" style="width: 40px;" class="profileImg" >
@@ -74,21 +74,23 @@
                   <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
 
                     <li class="u-nav-item currentBalanceLi">
-                      <span class="currentBalance"></span>
+                      <span class="currentBalance" ></span>
                     </li>
 
-         <li class="u-nav-item connectWalletLi">
-          <button type="button" class="btn btn-warning btn-lg login u-active-white u-border-2 u-border-white u-btn u-btn-round u-button-style u-hover-white u-palette-1-base u-radius-50 u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-1 connectWalletNav">
-            <span style="margin-right:5px">Connect</span>wallet
-          </button>
+                    <li class="u-nav-item connectWalletLi">
+                      <button type="button" class="btn btn-warning btn-lg login u-active-white u-border-2 u-border-white u-btn u-btn-round u-button-style u-hover-white u-palette-1-base u-radius-50 u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-1 connectWalletNav">
+                        <span style="margin-right:5px">Connect</span>wallet
+                      </button>
 
-          <button type="button" class="btn btn-warning btn-lg login u-active-white u-border-2 u-border-white u-btn u-btn-round u-button-style u-hover-white u-palette-1-base u-radius-50 u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-1 userinfoForm">
-            
-          </button>
+                      <!-- <button type="button" class="btn btn-warning btn-lg login u-active-white u-border-2 u-border-white u-btn u-btn-round u-button-style u-hover-white u-palette-1-base u-radius-50 u-text-active-black u-text-body-alt-color u-text-hover-black u-btn-1 userinfoForm" style="background-color: #01A0E8;"> -->
 
-        </li>
+                      <button type="button" style="font-family:hiragino-w6; max-width:100%;background-color:#01A0E8;color:white; padding: 5px 20px;" class="btn btn-lg u-radius-20 login userinfoForm userInfoBtn">
 
-                    
+                      </button>
+
+                    </li>
+
+                                
                     <li class="u-nav-item usernameLi">
                       <span class="username"></span>
                     </li>
@@ -122,7 +124,7 @@
 
             <ul class="u-nav u-unstyled u-nav-1">
               <li class="u-nav-item currentBalanceLi">
-                <span class="currentBalance"></span>
+                <span class="currentBalance" style="font-family:hiragino-w6;"></span>
               </li>
 
               <li class="u-nav-item">
@@ -142,7 +144,7 @@
 
               
               <li class="u-nav-item usernameLi">
-                <span class="username"></span>
+                <span class="username" style="font-family:hiragino-w6;"></span>
               </li>
 
             </ul>
@@ -164,7 +166,7 @@
           </button>
         </div>
 
-        <img style="width:30%" src="./assets/images/kbru_token_top.png" >
+        <img class="mainImg" src="./assets/images/kbru_token_top.png" >
 
         <div style="margin-bottom:20px" class="currentBalanceDiv" >
           <span id="balance"></span>
@@ -210,7 +212,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">ニックネームとプロフィール画像の登録をお願いします</h5>
+            <h5 class="modal-title" style="font-family:hiragino-w6;">ニックネームとプロフィール画像の登録をお願いします</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
 
@@ -223,13 +225,13 @@
 
               <div class="mb-3">
                 <label for="formFile" class="form-label">ニックネーム</label>
-                <input id="nickname" type="input" class="form-control" name="nickname" placeholder="ニックネーム">                           
+                <input id="nickname" style="border-radius: 20px; height: 45px;" type="input" class="form-control" name="nickname" placeholder="ニックネーム">                           
               </div>
 
               <div class="mb-3">
                 <label for="formFile" class="form-label">プロフィール画像</label>
-                <input class="form-control" type="file" id="profileImage">
-                <img class="profileImgForm" src="" style="width: 40px;">
+                <input class="form-control" style="border-radius: 20px; " type="file" id="profileImage">
+                <img class="profileImgForm" src="" style="width: 80px; margin-top:20px;">
               </div>
 
             </div>
@@ -237,8 +239,11 @@
             <input type="hidden" id="mode" name="mode" value="">
           </div>
           <div id="userCreateFooter" class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
-            <button id="userCreate" type="button" class="btn btn-primary">登録</button>
+            <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button> -->
+            <button type="button" class="btn btn-secondary btn-lg u-radius-20" data-bs-dismiss="modal" style="font-family:hiragino-w6; max-width:100%; padding: 6px 20px;">閉じる</button>
+            <button id="userCreate" type="button" class="btn btn-lg u-radius-20" style="font-family:hiragino-w6; max-width:100%;background-color:#01A0E8;color:white; padding: 6px 20px;">登録</button>
+
+            <!-- <button id="userCreate" type="button" class="btn btn-primary">登録</button> -->
           </div>
         </div>
       </div>

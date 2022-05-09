@@ -46,6 +46,9 @@ async function setNickname(nickname) {
 
 async function createUser(userData, changeMsg = true, showUserData = true) {
   try {
+    userData.rankingShow = 1 // デフォルトで1
+    userData.position = ""  // デフォルトは空
+
     const db = firebase.firestore();
     const docRef = await db.collection("users").add(userData);
     console.log("CreateUser Document written with ID: ", docRef.id);
@@ -231,8 +234,8 @@ async function updateUser(address, updateData){
 
 async function getAndShowRaning(pageSize) { 
   var i = 0
-
-  const querySnapshot = await db.collection("users").orderBy("currentBalance", "desc").limit(pageSize).get()
+  
+  const querySnapshot = await db.collection("users").where("rankingShow", "!=", 0).orderBy("rankingShow").orderBy("currentBalance", "desc").limit(pageSize).get()
   .then(querySnapshot => {
       querySnapshot.forEach((doc) => {
 
@@ -281,7 +284,7 @@ async function getAndShowRaning(pageSize) {
   
             <div style="background-color:#C9CACA; display:flex; align-items:center; border-radius: 30px;  margin-bottom:20px; padding: 8px 30px; font-family:hiragino-w8;">
               <div>
-                <img style="width:40px; margin-right:20px" class="rankingProfile_${i}" src="" alt="">
+                <img style="width:40px; margin-right:20px" class="rankingProfile_${i} rankingProfile" src="" alt="">
               </div>
               <div>
                 <div>

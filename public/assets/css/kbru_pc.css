@@ -53,23 +53,43 @@
     display: "";
   } */
 
-  .rewardDiv{
-    display: flex;
-    justify-content: center;    
-  }
-
   .rewardListDiv {
-    display:flex; 
+    /* display:flex; 
     justify-content: flex-start;
     flex-wrap: wrap; 
     color:black;
-    width:80%;
+    width:80%; */
+
+    display: flex;
+    color: black;
+    width: 100%;
+    justify-content: flex-start;    
+
   }
 
   #sendToDiv ul{
     margin-top:0px;
     color:black;
     text-align: left;
+  }
+
+  .mainImg {
+    width:200px;
+  }
+
+  .rewardDiv {
+    width:90%;
+    text-align: center;
+    font-family:hiragino-w8;
+    margin:5px 20px;
+    padding: 20px; 
+    border-radius: 20px;    
+ 
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
   }
 
 
