@@ -1,4 +1,9 @@
-const kbruAddr = "0x362D3a4bB7D5AF2EA25DDbcd54F782EFb7e26Ab5";
+// const kbruAddr = "0x362D3a4bB7D5AF2EA25DDbcd54F782EFb7e26Ab5";  // 20220418
+// const kbruAddr = "0x401F0243845587ec101cCD3Ea548F0fD1F9dF326";  // 20220509
+//const kbruAddr = "0x2262Ce72572b7f06A4635E824fDa344912973A86";  // 20220509 一回元に戻したヤツ
+const kbruAddr = "0xc75fc3aA4d26b820B0EF92e21e8E9e205cb8C7D8";  // 20220509 sendAmountをスマコンで保持しているVer
+
+
 const supportNetworkId = 4 //RinkeBy
 const supportNetworkName = 'RinkeBy'
 
@@ -12,10 +17,6 @@ $(document).ready(async () => {
     web3 = new Web3(Web3.givenProvider);
 
     var version = web3.version.api;
-    // console.log(version);
-
-    // priceData = await getPrice();
-    // console.dir(priceData)
 
     // 既にconnect walletしていたら自動的にconnectする
     if (localStorage?.getItem('isWalletConnected') === 'true') {
@@ -106,16 +107,12 @@ $("#sendToken").click(async () => {
   // 入力チェック
   if ($("#amount").val() != '' && toAddress != '') {
     openMsgModal()
-
-    // const decimals = 18;
-    // const input = $("#amount").val().toString();
-    // // amount = BigNumber.from(input).mul(BigNumber.from(10).pow(decimals));
-    // const amount = web3.utils.parseUnits(input, decimals)
-  
-    // amount = ($("#amount").val() * 10**18).toString()
   
     amount = $("#amount").val()
+    
+    // トークン送信
     await transferToken(toAddress, amount)  
+
   } else {
     alert('「送信先ウォレットアドレス」と「送信KBRU数」を入力してください')
   }
@@ -178,6 +175,8 @@ async function connectWallet() {
 
     currentBalance = await getCurrentBalance(user); // 現在の所有KBRUを取得
     $(".currentBalance").html(`${currentBalance.toLocaleString()} KBRU`)
+
+    sendAmount = await getCurrentSendAmount(user)  // 送信量を更新
 
     tokenInst.events.Transfer({ filter: {to: user} }, (err, event) => {
       console.log('あなたにKBRUが届きました')
@@ -268,12 +267,7 @@ async function updateCurrentBalanceTotalSendAmount(address, amount = 0) {
 
   }
 
-  // console.log(currentBalance)
-  // console.log(totalSendAmount)
-  
-  // await updateUser(address, {
   await updateUser(address, updateData)
-
 }
 
 async function getTotalSendAmount(address) {
@@ -369,54 +363,11 @@ async function getTokenSendHistory(contractAddr, tokenAbi,fromAddress, fromBlock
 
 }
 
-
-// function padLeft(address) {
-//   return "0x000000000000000000000000" + address.slice(2)
-// }
-
-// function removeLeft(address) {
-//   return '0x' + address.slice(26)
-// }
- 
-// function getTransferHistory(tokenAddress, fromBlock, fromEOAAddress) {
-//   // $('#result').empty()
-//   let filter = web3.eth.filter({address: tokenAddress, 
-//                                   fromBlock: fromBlock,
-//                                   toBlock: 'latest',
-//                                   topics:[
-//                                     web3.utils.sha3("Transfer(address,address,uint256)"),
-//                                     padLeft(fromEOAAddress)
-//                                   ]
-//                })
-//   let count = 0
-//   filter.watch(function(error, result){
-//     console.log(result)
-//     // let e = '<h1>TX' + ++count + '</h1>'
-//     //  + '<ul>'
-//     //   + '<li>from: ' + removeLeft(result.topics[1]) + '</li>'
-//     //   + '<li>to: ' + removeLeft(result.topics[2]) + '</li>'
-//     //   + '<li>value: ' + web3js.fromWei(result.data, 'ether') + '</li>'
-//     // + '</ul>'
-//     // $('#result').prepend(e)
-//   })
-// }  
-
-
-
-
-
-
-
 async function transferToken(to, amount) {
-
-  // web3.eth.getGasPrice()
-  // .then(
-  //   console.log
-  // );
 
   try {
 
-    let method = tokenInst.methods.transfer(to, web3.utils.toWei(amount));
+    let method = tokenInst.methods.transferKbru(to, web3.utils.toWei(amount));
     let gas = await method.estimateGas({from: user});
     console.log('estimateGas=' + gas);
 
@@ -424,7 +375,7 @@ async function transferToken(to, amount) {
     console.log('gasPrice=' + gasPrice);
   
   
-    const receipt = await tokenInst.methods.transfer(to, web3.utils.toWei(amount))
+    const receipt = await tokenInst.methods.transferKbru(to, web3.utils.toWei(amount))
     .send(
       {
         from: user,
@@ -467,25 +418,10 @@ async function transferToken(to, amount) {
         // メッセージを変化させる
         setModalEnd()
 
-
-
-
-
-
-
-
-        // console.log(`event called: ${event.event}`);
-        // console.log(JSON.stringify(event, null, "    "));
-
-        // })();
-      
-
-    } catch (error) {
-      alert(error.message)
-      hideMsgModal()
-    }
-
-
+      } catch (error) {
+        alert(error.message)
+        hideMsgModal()
+      }
 
     });
   
@@ -524,21 +460,14 @@ function setProfileImg(profilePath, target = "profileImg") {
     const gsReference = storageRef.child(profilePath);
   
     gsReference.getDownloadURL().then((downloadURL) => {
-      // document.getElementById(target).src = downloadURL;
-      // document.getElementsByClassName(target).src = downloadURL;
-
       const elements = document.getElementsByClassName(target); 
       for( let i = 0 ; i < elements.length ; i ++ ) {
         elements[i].src = downloadURL;
       }
 
-      // $(`.${target}`).src = downloadURL;
       console.log(downloadURL)
     });
   } else {
-    // document.getElementById(target).src = "./assets/images/default_profile_img.jpg";
-    // $(`.${target}`).src = "./assets/images/default_profile_img.jpg";
-    // document.getElementsByClassName(target).src = "./assets/images/default_profile_img.jpg";
 
     const elements = document.getElementsByClassName(target); 
     for( let i = 0 ; i < elements.length ; i ++ ) {
@@ -546,8 +475,6 @@ function setProfileImg(profilePath, target = "profileImg") {
     }
 
   }
-  
-
 }
 
 async function getCurrentBalance(address) {
@@ -568,57 +495,31 @@ async function getCurrentBalance(address) {
     // currentBalance
   }
 
-  // return balance
-
-
   return new Promise(async (resolve, reject) => {
     resolve(balance)
   })  
 
 }
 
+async function getCurrentSendAmount(address) {
 
-async function sendToken(to, amount) {
+  const sendAmountRaw = await tokenInst.methods.sendAmountOf(address).call();  // wei表記
+  const sendAmount = parseFloat(web3.utils.fromWei(sendAmountRaw, "ether")) // decimal 18 を考慮
 
-  const balanceRaw = await tokenInst.methods.transfer(to, amount).call();  // wei表記
+  console.log(sendAmount);
 
-  const balance = parseFloat(web3.utils.fromWei(balanceRaw, "ether")) // decimal 18 を考慮
+  // もしindex.htmlなら users.totalSendAmount を更新
+  var currentFile = window.location.href.split('/').pop();
+  if(currentFile == 'index.html') {
+    // users の currentBalanceを更新
+    updateUser(address, {totalSendAmount: sendAmount})
+  }
 
-  console.log(balance);
+  return new Promise(async (resolve, reject) => {
+    resolve(sendAmount)
+  })  
 
 }
-
-
-
-
-// function launchApp() {
-//   if (
-//     navigator.userAgent.indexOf('iPhone') > 0
-//     || navigator.userAgent.indexOf('iPad') > 0
-//     || navigator.userAgent.indexOf('iPod') > 0
-//   )
-//   {
-//     //  document.location = "fb://profile/341219895930508";
-//     // document.location = "https://metamask.app.link/dapp/kbru-test.web.app/";
-//     location.href = "https://metamask.app.link/dapp/kbru-test.web.app/";
-
-//     //  var time = (new Date()).getTime();
-//     //  setTimeout(function(){
-//     //      var now = (new Date()).getTime();
-
-//     //      if((now-time)<400) {
-//     //              document.location = "https://itunes.apple.com/jp/app/facebook/id284882215?mt=8&uo=4";
-//     //      }
-//     //  }, 300);
-//   }
-//   else if(navigator.userAgent.indexOf('Android') > 0)
-//   {
-//                   // document.location = "intent://profile/341219895930508#Intent;scheme=fb;package=com.facebook.katana;end";
-//                   document.location = "metamask://dapp/kbru-test.web.app"
-//   }
-
-// };
-
 
 function launchApp() {
 
