@@ -121,6 +121,17 @@
 
   }
 
+  .table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+  }
+  .table th,
+  .table td {
+    /* border: 2px solid #eee; */
+    padding: 4px 8px;
+  }
+
 }
 
 
