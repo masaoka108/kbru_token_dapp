@@ -135,13 +135,34 @@ async function connectWallet() {
     if (!(window.ethereum && window.ethereum.isMetaMask)) {
       //入っていない場合（スマホの場合）
       launchApp()
-      // $('#openMetamask').click()
     } else {
       // 入っている場合
     // 「接続して良いか？」を聞くPopUpを表示
-    const accounts = await window.ethereum.request({
+      const accounts = await window.ethereum.request({
       method: "eth_requestAccounts",
     })
+
+    // network確認
+    if(window.ethereum.networkVersion != supportNetworkId) {
+
+      try {
+        await web3.currentProvider.request({
+          method: 'wallet_switchEthereumChain',
+            params: [{ chainId: Web3.utils.toHex(supportNetworkId) }],
+          });
+      } catch (switchError) {
+        // This error code indicates that the chain has not been added to MetaMask.
+        if (switchError.code === 4902) {
+          alert('add this chain id')
+        }
+
+        if (switchError.code === 4001) {
+          alert(`このサイトではネットワークを${supportNetworkName}に切り替えてご利用ください`)
+        }
+
+      }
+
+    }
 
     user = accounts[0] //アドレスを取得
     tokenInst = new web3.eth.Contract(abi.kbru, kbruAddr, { from:user }); // kbru をインスタンス化

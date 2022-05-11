@@ -73,6 +73,18 @@
     text-align: left;
   }
 
+  .profileImgForm {
+    border-radius: 20%;
+  }
+
+  .profileImg {
+    border-radius: 20%;
+  }
+
+  .rankingProfile {
+    border-radius: 20%;
+  }
+
   .mainImg {
     width:200px;
   }
