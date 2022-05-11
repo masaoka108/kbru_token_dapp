@@ -146,10 +146,14 @@ async function connectWallet() {
     if(window.ethereum.networkVersion != supportNetworkId) {
 
       try {
+        // switch network
         await web3.currentProvider.request({
           method: 'wallet_switchEthereumChain',
             params: [{ chainId: Web3.utils.toHex(supportNetworkId) }],
-          });
+        });
+
+        location.reload()
+        
       } catch (switchError) {
         // This error code indicates that the chain has not been added to MetaMask.
         if (switchError.code === 4902) {
