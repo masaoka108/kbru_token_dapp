@@ -305,18 +305,17 @@
 
         $('#ifConnectTroubleDiv').on('click', function(){
 
-          // $("#divMsg").html(`
-          //   <div style="text-align:left">
-          //   ブラウザでうまくいかない場合、MetaMask内のブラウザに直接下記リンクをペーストして見てください。
-          //   </div>
+          $("#divMsg").html(`
+            <div style="text-align:left">
+            ブラウザでうまくいかない場合、MetaMask内のブラウザに直接下記リンクをペーストして見てください。
+            </div>
             
-          //   <div style="margin-top:20px; font-family:serif;">
-          //   </div>
+            <div style="margin-top:20px; font-family:serif;">
+              ${webURL}
+            </div>
 
-          //   <img style="width:100%;margin:20px 0px; border:solid 1px" src="./assets/images/metamask_browser.jpg">
-          // `)
-
-          $("#divMsg").html(webURL)
+            <img style="width:100%;margin:20px 0px; border:solid 1px" src="./assets/images/metamask_browser.jpg">
+          `)
 
           openMsgModal()
 
