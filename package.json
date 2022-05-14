@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/okamok/kbru_token_dapp#readme",
   "dependencies": {
-    "firebase": "^9.6.10"
+    "firebase": "^9.6.10",
+    "keccak256": "^1.0.6",
+    "merkletreejs": "^0.2.31"
   }
 }

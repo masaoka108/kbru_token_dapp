@@ -7,6 +7,9 @@ const kbruAddr = "0xc75fc3aA4d26b820B0EF92e21e8E9e205cb8C7D8";  // 20220509 send
 const supportNetworkId = 4 //RinkeBy
 const supportNetworkName = 'RinkeBy'
 
+const webURL = 'https://kbru-test.web.app/index.html'
+
+
 let web3, user, tokenInst, firebaseUserId;
 var userInfo, toUserInfo;
 var connectFlg = 0
@@ -173,6 +176,7 @@ async function connectWallet() {
     userInfo = await getUserInfo(user)  // Firebase ユーザー情報取得
 
     $(".btn.login").html("Connected") // ボタンを「Connected」に変える
+    $("#ifConnectTroubleDiv").hide()  // 「Connect Walletが上手くいかない時は？」を非表示にする
     $(".userinfoForm").html(shortAddress(user)) // ウォレットアドレスを表示
     $("#userMenu").fadeIn(1000);  // ユーザーメニューを表示
 

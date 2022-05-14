@@ -164,6 +164,17 @@
           <button type="button" style="font-size: 30px; font-family:hiragino-w6; max-width:100%;background-color:#E4007F;color:white; padding: 8px 40px;" class="btn btn-lg u-radius-20 login">
             <span style="margin-right:5px">Connect</span>wallet
           </button>
+
+          <div id="ifConnectTroubleDiv" style="width:100%; text-align:center;margin-top:5px; font-size:12px; cursor:pointer">
+            <i class="fas fa-info-circle"></i>
+            上手くMetaMaskに遷移できない場合
+          </div>
+
+          <div id="showTokenDiv" style="width:100%; text-align:center;margin-top:5px; font-size:12px; cursor:pointer">
+            <i class="fas fa-info-circle"></i>
+            MetaMaskにKBRUを表示する方法
+          </div>
+
         </div>
 
         <img class="mainImg" src="./assets/images/kbru_token_top.png" >
@@ -249,12 +260,99 @@
       </div>
     </div>
 
+
+    <div id="msgModal" class="modal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" style="font-family:hiragino-w6;">ご案内</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+      
+            <div id="divMsg" class="mb-3" style="display: flex; justify-content: center; flex-direction: column; text-align: center;font-family:hiragino-w6;">
+            
+            </div>
+
+          </div>
+          <!-- <div id="divButton" class="modal-footer" style="display: flex; justify-content: center;text-align: center;">
+            <a href="./tokenSend.html"  style="width:200px" class="btn btn-primary rounded-pill">OK</a>
+          </div> -->
+          <button type="button" style="margin:0px 10px 10px 10px" class="btn btn-primary rounded-pill" data-bs-dismiss="modal" aria-label="Close">OK</button>
+        </div>
+      </div>
+    </div>
+
+
+
     <script>
       var flg = 0;
       $(function() {
 
         // 富豪ランキングの表示
         getAndShowRaning(5)
+
+
+        // ヘルプクリック時
+        async function openMsgModal() {
+        var myModal = new bootstrap.Modal(document.getElementById('msgModal'), {
+            keyboard: false,
+            // backdrop: "static"
+          })
+
+          myModal.show();
+        }
+
+        $("#ifConnectTroubleDiv").click(() => {
+
+          $("#divMsg").html(`
+            <div style="text-align:left">
+            ブラウザでうまくいかない場合、MetaMask内のブラウザに直接下記リンクをペーストして見てください。
+            </div>
+
+            <div style="margin-top:20px">
+            ${webURL}
+            </div>
+
+            <img style="margin:20px 10px 10px 10px; border:solid 1px" src="./assets/images/metamask_browser.jpg">
+            
+          `)
+
+          openMsgModal()
+        });
+
+        
+        $("#showTokenDiv").click(() => {
+
+          $("#divMsg").html(`
+
+
+
+            <div style="text-align:left">
+            下記に従ってKBRUトークンをMetamaskで表示しましょう。
+            </div>
+
+            <img style="margin:20px 10px 10px 10px; border:solid 1px" src="./assets/images/add_token_1.jpg">
+
+            <div style="text-align:left">
+            下記、トークンのコントラクトアドレスをコピペします。
+            </div>
+
+            <div style="margin-top:10px; text-align:left; overflow-wrap: break-word;">
+            ${kbruAddr}
+            </div>
+            
+            <img style="margin:20px 10px 10px 10px; border:solid 1px" src="./assets/images/add_token_2.jpg">
+
+            <img style="margin:20px 10px 10px 10px; border:solid 1px" src="./assets/images/add_token_3.jpg">
+
+          `)
+
+          openMsgModal()
+        });
+
+
+
 
       });
 
