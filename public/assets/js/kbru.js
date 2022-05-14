@@ -203,7 +203,7 @@ async function connectWallet() {
 
 
     currentBalance = await getCurrentBalance(user); // 現在の所有KBRUを取得
-    $(".currentBalance").html(`${currentBalance.toLocaleString()} KBRU`)
+    $(".currentBalance").html(`<span style="margin-right:5px">${currentBalance.toLocaleString()}</span>KBRU`)
 
     sendAmount = await getCurrentSendAmount(user)  // 送信量を更新
 
