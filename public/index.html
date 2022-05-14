@@ -305,8 +305,6 @@
 
         $('#ifConnectTroubleDiv').on('click', function(){
 
-          openMsgModal()
-
           // $("#divMsg").html(`
           //   <div style="text-align:left">
           //   ブラウザでうまくいかない場合、MetaMask内のブラウザに直接下記リンクをペーストして見てください。
@@ -320,8 +318,7 @@
 
           $("#divMsg").html(webURL)
 
-
-
+          openMsgModal()
 
         }) 
 
@@ -360,7 +357,7 @@
             下記、トークンのコントラクトアドレスをコピペします。
             </div>
 
-            <div style="margin-top:10px; text-align:left; overflow-wrap: break-word;">
+            <div style="margin-top:10px; text-align:left; overflow-wrap: break-word;  word-wrap : break-word;">
             ${kbruAddr}
             </div>
             

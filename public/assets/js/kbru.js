@@ -4,10 +4,10 @@
 const kbruAddr = "0xc75fc3aA4d26b820B0EF92e21e8E9e205cb8C7D8";  // 20220509 sendAmountをスマコンで保持しているVer
 
 
-const supportNetworkId = 4 //RinkeBy
-const supportNetworkName = 'RinkeBy'
+const supportNetworkId = 4; //RinkeBy
+const supportNetworkName = 'RinkeBy';
 
-const webURL = 'https://kbru-test.web.app/index.html'
+const webURL = "https://kbru-test.web.app/index.html";
 
 
 let web3, user, tokenInst, firebaseUserId;
