@@ -1,13 +1,16 @@
-// const kbruAddr = "0x362D3a4bB7D5AF2EA25DDbcd54F782EFb7e26Ab5";  // 20220418
-// const kbruAddr = "0x401F0243845587ec101cCD3Ea548F0fD1F9dF326";  // 20220509
-//const kbruAddr = "0x2262Ce72572b7f06A4635E824fDa344912973A86";  // 20220509 一回元に戻したヤツ
+// test env
 const kbruAddr = "0xc75fc3aA4d26b820B0EF92e21e8E9e205cb8C7D8";  // 20220509 sendAmountをスマコンで保持しているVer
-
 const supportNetworkId = 4; //RinkeBy
 const supportNetworkName = "RinkeBy";
+const webDomain = "kbru-token-test.web.app";
+const webURL = "https://kbru-token-test.web.app/index.html";
 
-const webDomain = "kbru-test.web.app";
-const webURL = "https://kbru-test.web.app/index.html";
+// // prod env
+// const kbruAddr = "0xb5fEFf1C481a0B27B5B8eF12a9F76C509dAbd490";
+// const supportNetworkId = 137; 
+// const supportNetworkName = "Polygon";
+// const webDomain = "kbru-token.web.app";
+// const webURL = "https://kbru-token.web.app/index.html";
 
 
 
@@ -519,7 +522,7 @@ async function getCurrentBalance(address) {
 
   // もしindex.htmlなら users.currentBalanceを更新
   var currentFile = window.location.href.split('/').pop();
-  if(currentFile == 'index.html') {
+  if(currentFile == 'index.html' || currentFile == '') {
     // users の currentBalanceを更新      
     updateUser(address, {currentBalance: balance})
     // currentBalance
@@ -540,7 +543,7 @@ async function getCurrentSendAmount(address) {
 
   // もしindex.htmlなら users.totalSendAmount を更新
   var currentFile = window.location.href.split('/').pop();
-  if(currentFile == 'index.html') {
+  if(currentFile == 'index.html' || currentFile == '') {
     // users の currentBalanceを更新
     updateUser(address, {totalSendAmount: sendAmount})
   }
