@@ -1,12 +1,35 @@
+// test env (okamok)
+// const firebaseConfig = {
+//   apiKey: "AIzaSyCeG7Ak-8UgNYDSHnzQD53A0zTHPc6AKmM",
+//   authDomain: "kbru-test.firebaseapp.com",
+//   projectId: "kbru-test",
+//   storageBucket: "kbru-test.appspot.com",
+//   messagingSenderId: "372804501342",
+//   appId: "1:372804501342:web:8b8c7af9468b3b6e0359cf",
+//   measurementId: "G-EF2405NTQN"
+// };
+
+// test env
 const firebaseConfig = {
-  apiKey: "AIzaSyCeG7Ak-8UgNYDSHnzQD53A0zTHPc6AKmM",
-  authDomain: "kbru-test.firebaseapp.com",
-  projectId: "kbru-test",
-  storageBucket: "kbru-test.appspot.com",
-  messagingSenderId: "372804501342",
-  appId: "1:372804501342:web:8b8c7af9468b3b6e0359cf",
-  measurementId: "G-EF2405NTQN"
+  apiKey: "AIzaSyAid5FATthZurhrWmWg1aeuEwUdkMSzjwk",
+  authDomain: "kbru-token-test.firebaseapp.com",
+  projectId: "kbru-token-test",
+  storageBucket: "kbru-token-test.appspot.com",
+  messagingSenderId: "797502363392",
+  appId: "1:797502363392:web:6000a70482b2dfb2b585e5",
+  measurementId: "G-TZCHFQZB73"
 };
+
+// // prod env
+// const firebaseConfig = {
+//   apiKey: "AIzaSyDqW7WKzTcbc8t3xHsm7n_z8ui7Xn685P8",
+//   authDomain: "kbru-token.firebaseapp.com",
+//   projectId: "kbru-token",
+//   storageBucket: "kbru-token.appspot.com",
+//   messagingSenderId: "776894895212",
+//   appId: "1:776894895212:web:da61c68fbecc39e7b7b449",
+//   measurementId: "G-JHSCFW2KC6"
+// };
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);

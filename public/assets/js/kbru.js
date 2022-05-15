@@ -3,11 +3,12 @@
 //const kbruAddr = "0x2262Ce72572b7f06A4635E824fDa344912973A86";  // 20220509 一回元に戻したヤツ
 const kbruAddr = "0xc75fc3aA4d26b820B0EF92e21e8E9e205cb8C7D8";  // 20220509 sendAmountをスマコンで保持しているVer
 
-
 const supportNetworkId = 4; //RinkeBy
-const supportNetworkName = 'RinkeBy';
+const supportNetworkName = "RinkeBy";
 
+const webDomain = "kbru-test.web.app";
 const webURL = "https://kbru-test.web.app/index.html";
+
 
 
 let web3, user, tokenInst, firebaseUserId;
@@ -558,30 +559,30 @@ function launchApp() {
     || navigator.userAgent.indexOf('iPod') > 0
   )
   {
-    document.location = "https://metamask.app.link/dapp/kbru-test.web.app/";
+    document.location = "https://metamask.app.link/dapp//";
 
   }
   else if(navigator.userAgent.indexOf('Android') > 0)
   {
-      document.location = "metamask://dapp/kbru-test.web.app"
+      document.location = `metamask://dapp/${webDomain}`
       var time = (new Date()).getTime();
       setTimeout(function(){
           var now = (new Date()).getTime();
  
           if((now-time)<400) {
-                  document.location = "https://metamask.app.link/dapp/kbru-test.web.app/";
+                  document.location = `https://metamask.app.link/dapp/${webDomain}/`;
           }
       }, 300);
  
   } 
   else {
-    document.location = "metamask://dapp/kbru-test.web.app"
+    document.location = `metamask://dapp/${webDomain}`
     var time = (new Date()).getTime();
     setTimeout(function(){
         var now = (new Date()).getTime();
 
         if((now-time)<400) {
-                document.location = "https://metamask.app.link/dapp/kbru-test.web.app/";
+                document.location = `https://metamask.app.link/dapp/${webDomain}/`;
         }
     }, 300);
 
