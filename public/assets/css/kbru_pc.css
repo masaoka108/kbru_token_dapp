@@ -65,6 +65,8 @@
     width: 100%;
     justify-content: flex-start;    
 
+    flex-wrap: wrap;
+
   }
 
   #sendToDiv ul{
@@ -90,7 +92,7 @@
   }
 
   .rewardDiv {
-    width:90%;
+    width:20%;
     text-align: center;
     font-family:hiragino-w8;
     margin:5px 20px;
@@ -101,6 +103,21 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+
+  }
+
+  .rewardDivParent {
+    width:90%;
+    text-align: center;
+    font-family:hiragino-w8;
+    margin:5px 20px;
+    padding: 20px; 
+    border-radius: 20px;    
+ 
+    /* display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center; */
 
   }
 

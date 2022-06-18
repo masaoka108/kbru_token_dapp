@@ -175,7 +175,7 @@
 
 
           
-            <div class="rewardDiv">
+            <div class="rewardDivParent">
               <div id="rewardList" class="rewardListDiv">
               </div>
 
@@ -239,6 +239,9 @@
 
           const db = firebase.firestore();
           await db.collection("rewards")
+          .where("hidden", "!=", 1)
+          .orderBy("hidden")
+          .orderBy("order")
           .get()
           .then((querySnapshot) => {
 
@@ -271,7 +274,7 @@
 
             if(collection.image_path != '') {
               await gsReference.getDownloadURL().then((downloadURL) => {
-                imgTag = `<img src="${downloadURL}" style="width:200px">`
+                imgTag = `<img src="${downloadURL}" style="width:100%; margin-bottom:10px">`
                 })
 
             }
@@ -279,9 +282,9 @@
             $('#rewardList').append(`
                       <div class="rewardDiv btn-reward" style="background-color:${docData.background_color}; color:${docData.font_color};cursor: pointer;" >
                         ${imgTag}
-                        <span style="font-size:30px">${docData.name}</span><br>
+                        <span style="font-size:30px; line-height: 1.2em;">${docData.name}</span><br>
                         <div style="margin-bottom:10px">${docData.detail}</div>
-                        <span style="color:#FFF000">${docData.price.toLocaleString()}KBRU</span><br>
+                        <span style="font-size:30px;color:#FFF000">${docData.price.toLocaleString()}KBRU</span><br>
 
                       </div>
                   `)

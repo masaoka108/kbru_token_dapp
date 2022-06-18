@@ -1,9 +1,16 @@
-// test env
+// local env
 const kbruAddr = "0xc75fc3aA4d26b820B0EF92e21e8E9e205cb8C7D8";  // 20220509 sendAmountをスマコンで保持しているVer
 const supportNetworkId = 4; //RinkeBy
 const supportNetworkName = "RinkeBy";
-const webDomain = "kbru-token-test.web.app";
-const webURL = "https://kbru-token-test.web.app/index.html";
+const webDomain = "127.0.0.1:5500";
+const webURL = "http://127.0.0.1:5500/";
+
+// // test env
+// const kbruAddr = "0xD34317bbd65C37820146081C9f11597B6511931A";  // 20220523 共用Walletでデプロイ
+// const supportNetworkId = 4; //RinkeBy
+// const supportNetworkName = "RinkeBy";
+// const webDomain = "kbru-token-test.web.app";
+// const webURL = "https://kbru-token-test.web.app/index.html";
 
 // // prod env
 // const kbruAddr = "0xb5fEFf1C481a0B27B5B8eF12a9F76C509dAbd490";
